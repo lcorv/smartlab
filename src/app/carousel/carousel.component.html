@@ -1,0 +1,18 @@
+<ngb-carousel #carousel [interval]="4000" [pauseOnHover]="true" [pauseOnFocus]="true" (slide)="onSlide($event)">
+    @for (operatore of operatori; track operatore.id; let i = $index) {
+    <ng-template  ngbSlide>
+        <div class="carousel" class="row justify-content-center">
+            <div class="col-12 col-md-4">
+                <a href="https://www.google.com" target="_blank" rel="nofollow noopener noreferrer">
+                    <div class="image-wrapper">
+                        <img [src]="operatore.immagine" [alt]="operatore.nome" />
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="carousel-caption">
+            <h3>{{operatore.nome}}</h3>
+        </div>
+    </ng-template>
+    }
+</ngb-carousel>

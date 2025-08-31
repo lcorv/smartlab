@@ -1,0 +1,21 @@
+
+.carousel-caption{
+    background: #00000080;
+    padding: 10px;
+    border-radius: 5px;
+    bottom: 0;
+}
+.image-wrapper{
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+        width: 100%;
+        object-fit: cover;
+        transition: transform 0.5s;
+        &:hover{
+            transform: scale(1.1);
+        }
+    }
+}

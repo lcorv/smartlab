@@ -1,0 +1,70 @@
+.contactus {
+    padding: 100px;
+    z-index: 3;
+
+    p {
+        text-align: center;
+    }
+
+    button {
+        --primary: #fff;
+        margin: 50px;
+
+
+    }
+}
+
+.text-decoration-none{
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.servizi {
+    padding: 30px;
+    background-color: #eee;
+
+    .servizio:hover .image img {
+        transform: scale(1.2);
+    }
+
+    .servizio {
+        color: #555;
+        text-align: center;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        
+        .image {
+            height: 100px;
+            width: 100px;
+            display: flex;
+            justify-content: center;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: #fff;
+            flex: none;
+            
+            img {
+                transition: all 0.3s ease-in-out;
+                height: 100%;
+            }
+        }
+
+        .descrizione,
+        .sottotitolo {
+            margin-top: 1rem;
+            font-size: 0.7rem;
+        }
+    }
+}
+
+@media screen and (max-width:960px) {
+    .contactus {
+        padding: 100px 30px;
+
+        p {
+            font-size: 1.5rem;
+        }
+    }
+}

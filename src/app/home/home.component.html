@@ -1,0 +1,56 @@
+<div class="cover" appParallax>
+    <!--  <div class="animated-logo">
+        <app-logo></app-logo>
+    </div> -->
+    <div @flyIn class="title">
+        <div class="text-wrapper text-anim">
+            <h6>Smartlab riparazioni</h6>
+            <h1 appTextAnimation *ngIf="init">Problemi con smartphone o computer?</h1>
+            <h4 *ngIf="init">Ricevi assistenza istantanea.</h4>
+        </div>
+        <div class="action">
+            <a routerLink="/contact" class="button btn-primary">Contattaci ora</a>
+        </div>
+    </div>
+</div>
+<div class="content" appBackgroundColor appStagger appEnter>
+    <div class="section width-100">
+        <app-skills></app-skills>
+    </div>
+    <hr class="width-50">
+    <div class="section row justify-content-center width-100 enter">
+        <div class="message col-12 col-md-6">
+            <h1>Per i nostri indispensabili dispositivi</h1>
+            <h2>Riparazioni veloci ed economiche per Smartphone, Tablet e Computer.</h2>
+            <h2>I tuoi dispositivi giocano un ruolo importante nella tua vita professionale, personale e scolastica.
+                Quando il tuo telefono, tablet o laptop si rompe, vuoi che un esperto si occupi della riparazione. È qui
+                che entriamo in gioco noi. Professionalità, esperienza ed onestà fanno di SmartLab la scelta giusta.
+            </h2>
+        </div>
+        <div class="image col-12 col-md-6">
+            <img src="/images/repair_phone.png" alt="riparazione smartphone">
+
+        </div>
+        <div class="action col-12 col-md-6">
+            <a routerLink="/contact" class="button w-100 btn-dark mt-5">Contattaci ora</a>
+        </div>
+    </div>
+    <hr class="width-50">
+
+    <div class="section row justify-content-center width-100 enter">
+        <div class="message col-12 mb-5">
+            <h1>Scopri gli altri servizi.</h1>
+            <h2>Da Smartlab puoi anche ritirare o inviare i tuoi pacchi, cambiare gestore telefonico e fornitore di
+                energia.</h2>
+        </div>
+        <app-carousel></app-carousel>
+        <div class="action col-12 col-md-6">
+            <a class="button w-100 btn-dark mt-5" [href]="constants.maps" target="_blank">
+                Vieni a trovarci in negozio! <fa-icon [icon]="icons.faMapLocationDot"></fa-icon>
+            </a>
+        </div>
+    </div>
+
+    <hr class="width-50">
+    <app-contactus></app-contactus>
+</div>

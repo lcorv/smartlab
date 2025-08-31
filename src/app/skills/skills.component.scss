@@ -1,0 +1,19 @@
+.skill{
+    text-align: center;
+    color: #fff;
+    .icon{
+        fa-icon{
+            font-size: 5rem;
+        }
+    }
+
+    .nome{
+        font-weight: bold;
+        font-size: 1.5rem;
+        margin-top: 1rem;
+    }
+    .descrizione{
+        margin-top: 1rem;
+        font-size: 0.8rem;
+    }
+}

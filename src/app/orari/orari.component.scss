@@ -1,0 +1,29 @@
+.orario-settimanale{
+    display: block;
+    justify-content: center;
+    font-size: 0.75rem;
+    h1{
+        text-align: center;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+    .giorno{
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #fff4;
+        transition: background-color 0.3s;
+        padding: 2px;
+        .giorno-nome{
+            min-width: 50px;
+        }
+    }
+    .today{
+        font-weight: bold;
+        background-color: var(--primary);
+        color: #fff;
+    }
+    .giorno:hover{
+        background-color: #fff2;
+        cursor: default;
+    }
+}

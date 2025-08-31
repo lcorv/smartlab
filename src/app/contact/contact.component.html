@@ -1,0 +1,62 @@
+<div class="cover" appParallax>
+    <div class="title">
+        <div class="text-wrapper">
+            <h1 @flyIn *ngIf="init" class="w-100">Contattaci</h1>
+        </div>
+    </div>
+</div>
+<div class="content" appEnter>
+    <div class="email row justify-content-center">
+        <div class="text title enter col-12">
+            <h1> <fa-icon [icon]="Icons.faEnvelope"></fa-icon> Inviaci un'email</h1>
+        </div>
+        <div class="form-container enter col-12 col-sm-6">
+            <form (submit)="onSubmit('email')" #cForm="ngForm" novalidate [formGroup]="contactForm">
+                <div class="form-field w-100">
+                    <input class="form-input w-100" formControlName="subject" placeholder="Oggetto" type="text"
+                        required />
+                    <div class="form-err w-100" *ngIf="formErrors.subject">{{formErrors.subject}}</div>
+                </div>
+                <div class="form-field w-100">
+                    <textarea class="form-input w-100" formControlName="message" placeholder="Il tuo messaggio" type="text"
+                        required></textarea>
+                    <div class="form-err" *ngIf="formErrors.message">{{formErrors.message}}</div>
+                </div>
+                <div class="form-actions">
+                    <button [disabled]="!contactForm.valid" class="button btn-dark w-100"
+                        type="submit">Invia</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="whatsapp row justify-content-center">
+        <div class="text title enter col-12">
+            <h1> <fa-icon [icon]="Icons.faWhatsapp"></fa-icon> Contattaci su whatsapp</h1>
+        </div>
+        <div class="form-container enter col-12 col-sm-6" fxFlex.gt-sm="50">
+            <form (submit)="onSubmit('whatsapp')" #cForm="ngForm" novalidate [formGroup]="whatsappForm">
+                <div class="form-field w-100">
+                    <textarea class="form-input w-100" formControlName="message" placeholder="Il tuo messaggio" type="text"
+                        required></textarea>
+                    <div class="form-err w-100" *ngIf="whatsappErrors.message">{{whatsappErrors.message}}</div>
+                </div>
+                <div fxFlex.lt-sm="100" class="form-actions">
+                    <button fxFlex.lt-sm="100" [disabled]="!whatsappForm.valid" class="button btn-dark w-100"
+                        type="submit">Invia</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div fxFlexAlign="center" class="text title enter">
+        <h1> <fa-icon [icon]="Icons.faPhone"></fa-icon> Oppure chiamaci</h1>
+    </div>
+    <div class="row justify-content-center call-now">
+        <div class="form-container col-6" fxLayoutAlign="center">
+            <a href="tel:{{telNum}}">
+                <button fxFlex.lt-md="100" class="button btn-dark w-100" ngClass.gt-sm="contact-btn">
+                    Chiama subito
+                </button>
+            </a>
+        </div>
+    </div>
+</div>

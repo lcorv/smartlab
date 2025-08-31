@@ -1,0 +1,27 @@
+<div class="container-fluid row justify-content-center">
+    <div class="col-12 col-md-3">
+        <div class="orario-settimanale">
+            <h1>Orari</h1>
+            <div *ngFor="let orario of orari" class="giorno" [class.today]="orario.giorno.substring(0,3).toLocaleLowerCase() === today">
+                <div class="giorno-nome">{{ orario.giorno | abbrevia }} <span *ngIf="orario.giorno.substring(0,3).toLocaleLowerCase() === today">(Oggi)</span>: </div>
+                <div class="giorno-orari" *ngIf="orario.aperto; else chiuso">
+                <span *ngIf="orario.apertura_mattino && orario.chiusura_mattino">
+                    {{ orario.apertura_mattino }} - {{ orario.chiusura_mattino }}<span *ngIf="orario.chiusura_pomeriggio"> /</span>
+                </span>
+                <span *ngIf="!orario.chiusura_mattino">
+                    {{ orario.apertura_mattino }} - 
+                </span>
+                <span *ngIf="orario.apertura_pomeriggio && orario.chiusura_pomeriggio">
+                    {{ orario.apertura_pomeriggio }} - {{ orario.chiusura_pomeriggio }}
+                </span>
+                <span *ngIf="!orario.apertura_pomeriggio">
+                    {{ orario.chiusura_pomeriggio }}
+                </span>
+                </div>
+                <ng-template #chiuso>
+                <div class="chiuso">Chiuso</div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

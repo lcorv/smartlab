@@ -1,0 +1,12 @@
+<div class="row" appStagger>
+    @for (skill of skills; track skill.nome) {
+    <div class="col-12 col-md-4 mb-5 skill stagger">
+        <div class="icon">
+            <fa-icon [icon]="skill.icona"></fa-icon>
+        </div>
+        <div class="nome"> {{skill.nome}}</div>
+        <div class="descrizione"> {{skill.descrizione}}</div>
+    </div>
+
+    }
+</div>

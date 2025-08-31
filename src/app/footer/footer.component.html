@@ -1,0 +1,54 @@
+<footer class="footer" fxFlex fxLayoutAlign="start space-between" fxLayout="row wrap">
+    <div class="footer-social">
+        <a href="{{constants.facebook}}" target="_blank">
+            <fa-icon [icon]="Icons.faFacebookF"></fa-icon>
+        </a>
+         <a href="{{constants.instagram}}" target="_blank">
+            <fa-icon [icon]="Icons.faInstagram"></fa-icon>
+        </a>
+    </div>
+    <div class="orari">
+        <app-orari></app-orari>
+    </div>
+    <div class="footer-contacts">
+        <h3 fxFlex="100">Contatti:</h3>
+        <ul fxFlex="100">
+            <li>
+                <a href="mailto:{{constants.email}}" target="_blank">
+                    <span appIcons>
+                        <fa-icon [icon]="Icons.faEnvelope"></fa-icon>
+                    </span>
+                    email: {{constants.email}}
+                </a>
+            </li>
+            <li>
+                <a href="tel:{{constants.phone}}" target="_blank">
+                    <span appIcons>
+                        <fa-icon [icon]="Icons.faPhone"></fa-icon>
+                    </span>
+                    telefono: {{constants.phone}}
+                </a>
+            </li>
+            <li>
+                <a href="https://wa.me/{{constants.whatsapp}}" target="_blank">
+                    <span appIcons>
+                        <fa-icon [icon]="Icons.faWhatsapp"></fa-icon>
+                    </span>
+                    WhatsApp: {{constants.phone}}
+                </a>
+            </li>
+            <li>
+                <a [href]="constants.maps" target="_blank">
+                    <span appIcons>
+                        <fa-icon [icon]="Icons.faMapLocationDot"></fa-icon>
+                    </span>
+                    indirizzo: {{constants.address}}
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="copyright" fxFlex="100" fxLayoutAlign="center center">
+        <p>Copyright © {{date|date:'YYYY'}} Smarlab riparazioni. Tutti i
+            diritti riservati. <br> Designed by Luca Corvino</p>
+    </div>
+</footer>
