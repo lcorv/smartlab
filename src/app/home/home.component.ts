@@ -15,6 +15,7 @@ import { CONSTANTS } from '../shared/constants';
 import { Icons } from '../shared/icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StaggerDirective } from "../directives/stagger.directive";
+import { ScrubDirective } from "../directives/scrub.directive";
 
 
 @Component({
@@ -22,7 +23,7 @@ import { StaggerDirective } from "../directives/stagger.directive";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   animations:[flyInHome()],
-  imports: [SkillsComponent, FontAwesomeModule, CarouselComponent, RouterModule, ContactusComponent, CommonModule, TextAnimationDirective, BackgroundColorDirective, EnterDirective, StaggerDirective, ParallaxDirective, StaggerDirective],
+  imports: [SkillsComponent, FontAwesomeModule, CarouselComponent, RouterModule, ContactusComponent, CommonModule, TextAnimationDirective, BackgroundColorDirective, EnterDirective, StaggerDirective, ParallaxDirective, StaggerDirective, ScrubDirective],
 })
 export class HomeComponent implements OnInit {
 init:boolean = true;

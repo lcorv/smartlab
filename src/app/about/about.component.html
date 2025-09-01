@@ -1,1 +1,36 @@
-<p>about works!</p>
+<div class="cover" appParallax>
+    <div class="title">
+        <div class="text-wrapper">
+            <h1 @flyIn *ngIf="init" class="w-100">Chi siamo</h1>
+        </div>
+    </div>
+</div>
+<div class="content" appEnter>
+    <div class="section row justify-content-center width-100" appScrub>
+
+
+
+        <div class="message col-12 enter">
+            <h1>SmartLab nasce nel 2016 come laboratorio per la riparazione di smartphone, cellulari e computer.</h1>
+            <h2> Che sia un display rotto, una batteria usurata, un connettore non funzionante o altri problemi con il
+                tuo
+                dispositivo, l'importante è ottenere aiuto da una compagnia specializzata in riparazioni nel più breve
+                tempo
+                possibile. <br> Affidarsi alle persone giuste non è impresa facile viste le svariate alternative disponibili
+                al
+                giorno d'oggi. In questo caso non dovrai impazzire nella ricerca perché i nostri tecnici specializzati
+                risolveranno ogni tuo problema.</h2>
+        </div>
+
+        <div class="message col-12 enter">
+            <h1>Noi di SmartLab siamo problem solvers. </h1>
+            <h2>Quando vieni da noi con un problema al tuo dispositivo elettronico, abbiamo l'attitudine tecnica e
+                l'esperienza per ripararlo. Oltre agli smartphone, siamo specializzati in una vasta gamma di riparazioni
+                di dispositivi elettronici come computer, computer portatili, tablet e molto altro ancora.</h2>
+        </div>
+
+        <div class="action col-12 col-md-6">
+            <a routerLink="/servizi" class="button w-100 btn-dark mt-5">Scopri i nostri servizi</a>
+        </div>
+    </div>
+</div>

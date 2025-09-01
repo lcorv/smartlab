@@ -1,18 +1,94 @@
-<ngb-carousel #carousel [interval]="4000" [pauseOnHover]="true" [pauseOnFocus]="true" (slide)="onSlide($event)">
-    @for (operatore of operatori; track operatore.id; let i = $index) {
-    <ng-template  ngbSlide>
-        <div class="carousel" class="row justify-content-center">
-            <div class="col-12 col-md-4">
-                <a href="https://www.google.com" target="_blank" rel="nofollow noopener noreferrer">
-                    <div class="image-wrapper">
-                        <img [src]="operatore.immagine" [alt]="operatore.nome" />
+@if(slide){
+    <ngb-carousel #carousel [interval]="4000" [pauseOnHover]="true" [pauseOnFocus]="true" (slide)="onSlide($event)">
+        @for (operatore of operatori; track operatore.id; let i = $index) {
+        <ng-template  ngbSlide>
+            <div class="carousel" class="row justify-content-center">
+                <div class="col-12 col-md-4">
+                    <div (click)="openDialog(operatore)" target="_blank" rel="nofollow noopener noreferrer">
+                        <div class="image-wrapper">
+                            <img [src]="operatore.immagine" [alt]="operatore.nome" />
+                        </div>
                     </div>
-                </a>
+                </div>
             </div>
+            <div class="carousel-caption">
+                <h3>{{operatore.nome}}</h3>
+            </div>
+        </ng-template>
+        }
+    </ngb-carousel>
+}
+@else {
+    <div class="container-fluid"
+            style="margin: 0; scroll-padding-top: 100px; margin-top: -50px; width: 100%; padding: 0;" >
+            <!--Operatori mobili-->
+            <div class="container-fluid" style="margin: 0; padding: 0;">
+                <h3 class="card-title" style="margin-top: 50px;">Telefono mobile e rete fissa</h3>
+                <div class="row">
+                    @for(operatore of operatori; track operatore.id; let i = $index){
+                        @if(operatore.tipo === TipoOperatore.TELEFONOMOBILE || operatore.tipo === TipoOperatore.TELEFONOFISSO){
+                            <div class="col-12 col-md-6">
+                                <div mat-ripple (click)="openDialog(operatore)" class="card shadow mb-3" style="max-width: 540px;">
+                                    <div class="row g-0">
+                                        <div class="col-md-6 image-container"><img class="img-fluid rounded-start"
+                                                [src]="operatore.immagine" [alt]="operatore.nome" /></div>
+                                        <div class="col-md-6">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{operatore.nome}}</h5>
+                                                <p class="card-text" [innerHTML]="operatore.descrizione_breve">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+                <h3 class="card-title" style="margin-top: 50px;">Corrieri</h3>
+                <div class="row">
+                    @for(operatore of operatori; track operatore.id; let i = $index){
+                        @if(operatore.tipo === TipoOperatore.CORRIERE){
+                            <div class="col-12 col-md-6">
+                                <div mat-ripple (click)="openDialog(operatore)" class="card shadow mb-3" style="max-width: 540px;">
+                                    <div class="row g-0">
+                                        <div class="col-md-6 image-container"><img class="img-fluid rounded-start"
+                                                [src]="operatore.immagine" [alt]="operatore.nome" /></div>
+                                        <div class="col-md-6">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{operatore.nome}}</h5>
+                                                <p class="card-text" [innerHTML]="operatore.descrizione_breve">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+                <h3 class="card-title" style="margin-top: 50px;">Fornitori di energia</h3>
+                <div class="row">
+                    @for(operatore of operatori; track operatore.id; let i = $index){
+                        @if(operatore.tipo === TipoOperatore.FORNITORE){
+                            <div class="col-12 col-md-6">
+                                <div mat-ripple (click)="openDialog(operatore)" class="card shadow mb-3" style="max-width: 540px;">
+                                    <div class="row g-0">
+                                        <div class="col-md-6 image-container">
+                                            <img class="img-fluid rounded-start"
+                                                [src]="operatore.immagine" [alt]="operatore.nome" />
+                                            </div>
+                                        <div class="col-md-6">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{operatore.nome}}</h5>
+                                                <p class="card-text" [innerHTML]="operatore.descrizione_breve">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
         </div>
-        <div class="carousel-caption">
-            <h3>{{operatore.nome}}</h3>
         </div>
-    </ng-template>
-    }
-</ngb-carousel>
+
+}

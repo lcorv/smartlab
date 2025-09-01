@@ -28,7 +28,6 @@ export class StaggerDirective {
     setTimeout(() => {
       gsap.from('.stagger',{
         opacity:0, y:-100,
-        markers: true,
       })
       ScrollTrigger.batch( '.stagger', {
           scroller: '.sidenav-content',
@@ -39,9 +38,8 @@ export class StaggerDirective {
             y:0, 
             stagger: 0.1, 
             ease: 'power1.out', 
-            duration: 0.4,
-            markers: true
-          }) ,
+            duration: 0.4
+            }) ,
       })
   });
   }

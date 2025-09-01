@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>{{operatore.nome}}</h2>
+<h3 mat-dialog-title>{{operatore.descrizione_breve}}</h3>
+<mat-dialog-content class="mat-typography">
+    <div class="row">
+        <div class="image col-12 col-md-6 mb-5">
+            <img [src]="operatore.immagine" [alt]="operatore.descrizione_breve">
+        </div>
+        <div class="col-12 col-md-6">
+            <p [innerHTML]="operatore.descrizione"></p>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Chiudi</button>
+</mat-dialog-actions>

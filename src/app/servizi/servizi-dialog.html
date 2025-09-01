@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>{{servizio.titolo}}</h2>
+<h3 mat-dialog-title>{{servizio.sottotitolo}}</h3>
+<mat-dialog-content class="mat-typography">
+    <div class="row">
+        <div class="image col-12 col-md-6 mb-5">
+            <img [src]="servizio.immagine" [alt]="servizio.descrizione">
+        </div>
+        <div class="col-12 col-md-6">
+            <p [innerHTML]="servizio.descrizione"></p>
+            <p [innerHTML]="servizio.testo"></p>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Chiudi</button>
+</mat-dialog-actions>

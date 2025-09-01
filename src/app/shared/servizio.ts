@@ -3,7 +3,6 @@ export class Servizio{
     titolo: string;
     sottotitolo: string;
     descrizione: string;
-    icona?: any;
     immagine?: string;
     testo?: string;
 

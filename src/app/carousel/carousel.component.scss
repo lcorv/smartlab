@@ -10,6 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
     img{
         width: 100%;
         object-fit: cover;
@@ -18,4 +19,19 @@
             transform: scale(1.1);
         }
     }
+}
+
+.card{
+    cursor: pointer;
+    overflow: hidden;
+    .image-container{
+        overflow: hidden;
+    }
+    img{
+        transition: transform 0.5s;
+    }
+}
+
+.card:hover img{
+    transform: scale(1.1);
 }

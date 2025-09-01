@@ -1,27 +1,37 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Inject, inject, input, Input, ViewChild } from '@angular/core';
 import { NgbCarousel, NgbCarouselModule, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
-import { OPERATORI } from '../shared/operatori';
+import { TipoOperatore } from '../shared/operatori';
+import { OperatoriService } from '../services/operatori.service';
+import { Operatore } from '../shared/operatore';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatRippleModule } from '@angular/material/core';
 
 @Component({
-  selector: 'app-carousel',
-  imports: [NgbCarouselModule, FormsModule],
-  templateUrl: './carousel.component.html',
-  styleUrl: './carousel.component.scss'
+	selector: 'app-carousel',
+	imports: [NgbCarouselModule, FormsModule, MatRippleModule],
+	templateUrl: './carousel.component.html',
+	styleUrl: './carousel.component.scss'
 })
 export class CarouselComponent {
 
-  operatori = OPERATORI;
-
-	images = [62, 83, 466, 965, 982, 1043, 738].map((n) => `https://picsum.photos/id/${n}/900/500`);
-
+	@Input() slide: boolean;
+	TipoOperatore = TipoOperatore
+	operatoriService = inject(OperatoriService);
+	dialog = inject(MatDialog);
 	paused = false;
+	operatori: Operatore[];
 	unpauseOnArrow = false;
 	pauseOnIndicator = false;
 	pauseOnHover = true;
 	pauseOnFocus = true;
 
 	@ViewChild('carousel', { static: true }) carousel: NgbCarousel;
+
+	ngOnInit(){
+		this.getOperatori()
+	}
 
 	togglePaused() {
 		if (this.paused) {
@@ -30,6 +40,13 @@ export class CarouselComponent {
 			this.carousel.pause();
 		}
 		this.paused = !this.paused;
+	}
+
+	getOperatori() {
+		this.operatoriService.getOperatori().subscribe({
+			next: (operatori) => this.operatori = operatori,
+			error: (err) => console.log(err)
+		})
 	}
 
 	onSlide(slideEvent: NgbSlideEvent) {
@@ -44,5 +61,26 @@ export class CarouselComponent {
 			this.togglePaused();
 		}
 	}
+
+	  openDialog(operatore: Operatore) {
+		const dialogRef = this.dialog.open(ServiziDialog,{
+		  data: operatore
+		});
+	
+		dialogRef.afterClosed().subscribe(result => {
+		  console.log(`Dialog result: ${result}`);
+		});
+	  }
+
+}
+
+@Component({
+  selector: 'dialog-content-example-dialog',
+  templateUrl: 'carousel-dialog.html',
+  styleUrl: './carousel-dialog.scss',
+  imports: [MatDialogModule, MatButtonModule]
+})
+export class ServiziDialog {
+    constructor(@Inject(MAT_DIALOG_DATA) public operatore: Operatore) {}
 
 }
