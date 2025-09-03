@@ -1,5 +1,5 @@
 export const CONSTANTS = {
-    SITE_NAME: 'Smartlab',
+    site_name: 'Smartlab',
     address: 'Via Roma, 75, Tavullia (PU)',
     maps: 'https://maps.app.goo.gl/DqKH8B8QuxhNEVeW8',
     phone: '+39 371 190 3046',

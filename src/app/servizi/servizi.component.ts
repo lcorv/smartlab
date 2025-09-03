@@ -39,7 +39,10 @@ export class ServiziComponent {
 
   getServizi() {
     this.serviziService.getServizi().subscribe({
-      next: (servizi) => this.servizi = servizi,
+      next: (servizi) => {
+        this.servizi = servizi;
+        console.log(servizi)
+      },
       error: (err) => console.log(err)
     });
   }

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { ORARI } from '../shared/orari';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AbbreviaPipe } from "../pipes/abbrevia.pipe";
+import { Orario } from '../shared/orario';
+import { OrariService } from '../services/orari.service';
 
 @Component({
   selector: 'app-orari',
@@ -10,7 +11,18 @@ import { AbbreviaPipe } from "../pipes/abbrevia.pipe";
   styleUrl: './orari.component.scss'
 })
 export class OrariComponent {
-  orari = ORARI;
+  orari:Orario[];
+  orariService = inject(OrariService);
+  ngOnInit(){
+    this.getOrari()
+  }
+  getOrari(){
+    this.orariService.getOrari().subscribe({
+      next: (data)=>{
+        this.orari = data;
+      }
+    })
+  }
   get today() {
     const days = ['dom', 'lun', 'mar', 'mer', 'gio', 'ven', 'sab'];
     const d = new Date();

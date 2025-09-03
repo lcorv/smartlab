@@ -1,0 +1,56 @@
+<div class="container-fluid">
+  <form *ngIf="siteInfo" class="row" [formGroup]="siteInfoForm" (ngSubmit)="onSubmit()">
+    <!-- Nome del sito -->
+    <mat-form-field class="col-12 col-sm-6 col-xl-4 mb-3" appearance="outline">
+      <mat-label>Nome del Sito</mat-label>
+      <input matInput formControlName="site_name" required />
+    </mat-form-field>
+
+    <!-- Indirizzo -->
+    <mat-form-field class="col-12 col-sm-6 col-xl-4 mb-3" appearance="outline">
+      <mat-label>Indirizzo</mat-label>
+      <input matInput formControlName="address" required />
+    </mat-form-field>
+
+    <!-- Link Google Maps -->
+    <mat-form-field class="col-12 col-sm-6 col-xl-4 mb-3" appearance="outline">
+      <mat-label>Link Google Maps</mat-label>
+      <input matInput formControlName="maps" required />
+    </mat-form-field>
+
+    <!-- Telefono -->
+    <mat-form-field class="col-12 col-sm-6 col-xl-4 mb-3" appearance="outline">
+      <mat-label>Telefono</mat-label>
+      <input matInput formControlName="phone" required />
+    </mat-form-field>
+
+    <!-- WhatsApp -->
+    <mat-form-field class="col-12 col-sm-6 col-xl-4 mb-3" appearance="outline">
+      <mat-label>WhatsApp</mat-label>
+      <input matInput formControlName="whatsapp" required />
+    </mat-form-field>
+
+    <!-- Email -->
+    <mat-form-field class="col-12 col-sm-6 col-xl-4 mb-3" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" required />
+    </mat-form-field>
+
+    <!-- Facebook -->
+    <mat-form-field class="col-12 col-sm-6 col-xl-4 mb-3" appearance="outline">
+      <mat-label>Facebook</mat-label>
+      <input matInput formControlName="facebook" />
+    </mat-form-field>
+
+    <!-- Instagram -->
+    <mat-form-field class="col-12 col-sm-6 col-xl-4 mb-3" appearance="outline">
+      <mat-label>Instagram</mat-label>
+      <input matInput formControlName="instagram" />
+    </mat-form-field>
+
+    <!-- Pulsanti -->
+    <div class="d-flex justify-content-between mt-4">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!siteInfoForm.valid">Salva</button>
+    </div>
+  </form>
+</div>

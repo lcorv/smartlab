@@ -1,0 +1,95 @@
+<form [formGroup]="formData" (submit)="saveOrario()">
+    <table class="table table-striped table-hover">
+
+        <thead class="table-primary">
+            <tr>
+                <th>Giorno</th>
+                <th>Aperto</th>
+                <th>Apertura Mattino</th>
+                <th>Chiusura Mattino</th>
+                <th>Apertura Pomeriggio</th>
+                <th>Chiusura Pomeriggio</th>
+                <th class="action">Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let orario of orari">
+                @if(formData.value.giorno_settimana!=orario.giorno_settimana){
+                <td>{{ orario.giorno_settimana }}</td>
+                <td>
+                    <mat-icon *ngIf="orario.aperto" color="primary">check_circle</mat-icon>
+                    <mat-icon *ngIf="!orario.aperto" color="warn">cancel</mat-icon>
+                </td>
+                <td>{{ orario.apertura_mattina || 'N/A' }}</td>
+                <td>{{ orario.chiusura_mattina || 'N/A' }}</td>
+                <td>{{ orario.apertura_pomeriggio || 'N/A' }}</td>
+                <td>{{ orario.chiusura_pomeriggio || 'N/A' }}</td>
+                <td>
+                    <button type="button" mat-icon-button (click)="onEdit(orario)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </td>
+                }
+                @else {
+                <td>{{ orario.giorno_settimana }}</td>
+                <td>
+                    <mat-slide-toggle formControlName="aperto"></mat-slide-toggle>
+                </td>
+                <td>
+                    <div class="cella-ora">
+                        <mat-form-field>
+                            <mat-label>Pick a time</mat-label>
+                            <input matInput formControlName="apertura_mattina" [matTimepicker]="picker1">
+                            <mat-timepicker #picker1 />
+                        </mat-form-field>
+                        <button type="button" mat-icon-button>
+                            <mat-icon (click)="rimuoviOrario('apertura_mattina')">cancel</mat-icon>
+                        </button>
+                    </div>
+                </td>
+                <td>
+                    <div class="cella-ora">
+                        <mat-form-field>
+                            <mat-label>Pick a time</mat-label>
+                            <input matInput formControlName="chiusura_mattina" [matTimepicker]="picker2">
+                            <mat-timepicker #picker2 />
+                        </mat-form-field>
+                        <button type="button" mat-icon-button>
+                            <mat-icon (click)="rimuoviOrario('chiusura_mattina')">cancel</mat-icon>
+                        </button>
+                    </div>
+                </td>
+                <td>
+                    <div class="cella-ora">
+                        <mat-form-field>
+                            <mat-label>Pick a time</mat-label>
+                            <input matInput formControlName="apertura_pomeriggio" [matTimepicker]="picker3">
+                            <mat-timepicker #picker3 />
+                        </mat-form-field>
+                        <button type="button" mat-icon-button>
+                            <mat-icon (click)="rimuoviOrario('apertura_pomeriggio')">cancel</mat-icon>
+                        </button>
+                    </div>
+                </td>
+                <td>
+                    <div class="cella-ora">
+                        <mat-form-field>
+                            <mat-label>Pick a time</mat-label>
+                            <input matInput formControlName="chiusura_pomeriggio" [matTimepicker]="picker4">
+                            <mat-timepicker #picker4 />
+                        </mat-form-field>
+                        <button type="button" mat-icon-button>
+                            <mat-icon (click)="rimuoviOrario('chiusura_pomeriggio')">cancel</mat-icon>
+                        </button>
+                    </div>
+                </td>
+                <td>
+                    <button mat-icon-button>
+                            <mat-icon>save</mat-icon>
+                    </button>
+                </td>
+                }
+            </tr>
+        </tbody>
+    </table>
+</form>

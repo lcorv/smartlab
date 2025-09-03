@@ -1,7 +1,7 @@
 <div class="cover" appParallax>
-    <!--  <div class="animated-logo">
-        <app-logo></app-logo>
-    </div> -->
+    <div class="animated-logo">
+        <app-animated-logo></app-animated-logo>
+    </div>
     <div @flyIn class="title">
         <div class="text-wrapper text-anim">
             <h6>Smartlab riparazioni</h6>
@@ -13,7 +13,7 @@
         </div>
     </div>
 </div>
-<div class="content" appBackgroundColor appEnter>
+<div *ngIf="constants" class="content" appBackgroundColor appEnter>
     <div class="section width-100">
         <app-skills></app-skills>
     </div>
@@ -23,17 +23,17 @@
         <div class="message col-12 enter">
             <h1>Offriamo assistenza tecnica e software</h1>
             <h2>per qualsiasi dispositivo</h2>
-    
+
         </div>
-       <div class="image col-12 scrub" >
-           <img src="/images/assistenza_tecnica.jpg" alt="riparazione smartphone">
-       </div>
-       
-       <div class="action col-12 col-md-6">
-           <a routerLink="/servizi" class="button w-100 btn-dark mt-5">Scopri i nostri servizi</a>
-       </div>
-   </div>
-   <hr class="width-50">
+        <div class="image col-12 scrub">
+            <img src="/images/assistenza_tecnica.jpg" alt="riparazione smartphone">
+        </div>
+
+        <div class="action col-12 col-md-6">
+            <a routerLink="/servizi" class="button w-100 btn-dark mt-5">Scopri i nostri servizi</a>
+        </div>
+    </div>
+    <hr class="width-50">
     <div class="section row justify-content-center width-100 enter">
         <div class="message col-12 col-md-6">
             <h1>Per i nostri indispensabili dispositivi</h1>
@@ -70,11 +70,14 @@
 
     <hr class="width-50">
 
-     <div class="section row justify-content-center width-100 enter">
+    <div class="section row justify-content-center width-100 enter">
         <div class="message col-12 mb-5">
             <h1>Siamo a Tavullia, vicino Pesaro</h1>
         </div>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2874.9613987167563!2d12.753429899999999!3d43.898066199999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132ce3cee390e63f%3A0x97361222248caecc!2sSmartLab!5e0!3m2!1sit!2sit!4v1756663344862!5m2!1sit!2sit" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2874.9613987167563!2d12.753429899999999!3d43.898066199999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132ce3cee390e63f%3A0x97361222248caecc!2sSmartLab!5e0!3m2!1sit!2sit!4v1756663344862!5m2!1sit!2sit"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
     <hr class="width-50">

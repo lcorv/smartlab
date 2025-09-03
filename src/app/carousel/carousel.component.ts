@@ -7,10 +7,11 @@ import { Operatore } from '../shared/operatore';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
 	selector: 'app-carousel',
-	imports: [NgbCarouselModule, FormsModule, MatRippleModule],
+	imports: [NgbCarouselModule, FormsModule, MatRippleModule, CommonModule],
 	templateUrl: './carousel.component.html',
 	styleUrl: './carousel.component.scss'
 })

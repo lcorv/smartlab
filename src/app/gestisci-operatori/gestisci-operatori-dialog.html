@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>Modifica {{operatore.nome}}</h2>
+<mat-dialog-content>
+  <h2 class="text-center mb-4">Modifica Operatore</h2>
+  <form *ngIf="formData" [formGroup]="formData" (ngSubmit)="onSubmit()">
+    <!-- Nome -->
+    <mat-form-field class="w-100 mb-3" appearance="outline">
+      <mat-label>Nome</mat-label>
+      <input matInput type="text" formControlName="nome" required />
+    </mat-form-field>
+
+    <!-- Tipo -->
+    <mat-form-field class="w-100 mb-3" appearance="outline">
+      <mat-label>Tipo</mat-label>
+      <mat-select formControlName="tipo" required>
+        <mat-option *ngFor="let tipo of tipiOperatori" [value]="tipo">
+          {{ tipo }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Descrizione breve -->
+    <mat-form-field class="w-100 mb-3" appearance="outline">
+      <mat-label>Descrizione Breve</mat-label>
+      <textarea matInput rows="2" formControlName="descrizione_breve"></textarea>
+    </mat-form-field>
+
+    <!-- Descrizione -->
+    <mat-form-field class="w-100 mb-3" appearance="outline">
+      <mat-label>Descrizione</mat-label>
+      <textarea matInput rows="4" formControlName="descrizione"></textarea>
+    </mat-form-field>
+
+    <!-- Pulsanti -->
+    <div class="d-flex justify-content-between mt-4">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!formData.valid">Salva</button>
+      <button mat-raised-button color="warn" type="button" (click)="onCancel()">Annulla</button>
+    </div>
+  </form>
+</mat-dialog-content>

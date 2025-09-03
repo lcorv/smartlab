@@ -20,6 +20,7 @@
 }
 @else {
     <div class="container-fluid"
+            *ngIf="operatori"
             style="margin: 0; scroll-padding-top: 100px; margin-top: -50px; width: 100%; padding: 0;" >
             <!--Operatori mobili-->
             <div class="container-fluid" style="margin: 0; padding: 0;">
@@ -27,7 +28,7 @@
                 <div class="row">
                     @for(operatore of operatori; track operatore.id; let i = $index){
                         @if(operatore.tipo === TipoOperatore.TELEFONOMOBILE || operatore.tipo === TipoOperatore.TELEFONOFISSO){
-                            <div class="col-12 col-md-6">
+                            <div class="col-12 col-md-6 enter">
                                 <div mat-ripple (click)="openDialog(operatore)" class="card shadow mb-3" style="max-width: 540px;">
                                     <div class="row g-0">
                                         <div class="col-md-6 image-container"><img class="img-fluid rounded-start"
@@ -48,7 +49,7 @@
                 <div class="row">
                     @for(operatore of operatori; track operatore.id; let i = $index){
                         @if(operatore.tipo === TipoOperatore.CORRIERE){
-                            <div class="col-12 col-md-6">
+                            <div class="col-12 col-md-6 enter">
                                 <div mat-ripple (click)="openDialog(operatore)" class="card shadow mb-3" style="max-width: 540px;">
                                     <div class="row g-0">
                                         <div class="col-md-6 image-container"><img class="img-fluid rounded-start"
@@ -69,7 +70,7 @@
                 <div class="row">
                     @for(operatore of operatori; track operatore.id; let i = $index){
                         @if(operatore.tipo === TipoOperatore.FORNITORE){
-                            <div class="col-12 col-md-6">
+                            <div class="col-12 col-md-6 enter">
                                 <div mat-ripple (click)="openDialog(operatore)" class="card shadow mb-3" style="max-width: 540px;">
                                     <div class="row g-0">
                                         <div class="col-md-6 image-container">

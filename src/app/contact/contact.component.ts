@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatInputModule } from '@angular/material/input';
 import { Icons } from '../shared/icons';
@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { flyIn } from '../animations/enterAnimations';
 import { ParallaxDirective } from '../directives/parallax.directive';
 import { CONSTANTS } from '../shared/constants';
+import { SiteInfo } from '../shared/siteInfo';
+import { SiteInfoService } from '../services/site-info.service';
 
 @Component({
   selector: 'app-contact',
@@ -21,11 +23,12 @@ import { CONSTANTS } from '../shared/constants';
 })
 export class ContactComponent implements OnInit {
   Icons = Icons;
-  constants = CONSTANTS
-  email: string = this.constants.email
+  constants: SiteInfo;
+  infoService = inject(SiteInfoService);
   emailLink: string = '';
-  telNum: string = this.constants.phone;
-  whatsapp: string = this.constants.whatsapp;
+  email: string;
+  telNum: string;
+  whatsapp: string;
   wmsg: string = '';
   contactForm: FormGroup;
   whatsappForm: FormGroup;
@@ -69,7 +72,15 @@ export class ContactComponent implements OnInit {
     })
   }
   ngOnInit(): void {
-    this.createForm()
+    this.createForm();
+    this.infoService.getSiteInfo().subscribe({
+      next: (data)=>{
+        this.constants = data;
+        this.email = data.email
+        this.telNum = data.phone;
+        this.whatsapp = data.whatsapp;
+      }
+    })
   }
   onSubmit(media) {
     if (media == 'email') {

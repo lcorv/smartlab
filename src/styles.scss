@@ -1,11 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
-// Variable overrides first
-@import "@angular/material/prebuilt-themes/indigo-pink.css";
-$enable-shadows: true;
-$prefix: "mo-";
+@use '@angular/material' as mat;
 
 // Then import Bootstrap
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+.alert-success {
+  background-color: #4caf50; /* Verde */
+  color: white;
+}
+
+.alert-error {
+  background-color: #f44336; /* Rosso */
+  color: white;
+}
+
+.alert-info {
+  background-color: #2196f3; /* Blu */
+  color: white;
+}
+
+:root {
+  @include mat.tabs-overrides((
+      active-focus-indicator-color: var(--primary),
+      active-focus-label-text-color: var(--primary),
+      inactive-label-text-color: #aaa,
+      pagination-icon-color:#fff,
+      background-color:#fff,
+      foreground-color:#fff
+
+  ));
+}
+.mat-mdc-tab-labels {
+    background-color: #fff;
+}
 
 body {
     margin: 0;
@@ -15,31 +41,37 @@ body {
     border: 1px solid red;
     ;
 }
-.enter{
+
+.enter {
     opacity: 0;
     transform: translateY(-100px);
 }
-.text-anim{
-    &:not(:has(.letter)){
-        *{
-            opacity:0;
+
+.text-anim {
+    &:not(:has(.letter)) {
+        * {
+            opacity: 0;
         }
     }
-    *{
+
+    * {
         overflow: hidden;
     }
+
     .letter {
         display: inline-block;
         line-height: 3.3rem;
         margin: 0;
         transform: translateY(1.1rem);
         height: 3.6rem;
-      }
-      .letter:hover{
+    }
+
+    .letter:hover {
         transition: transform 0.1s;
-        transform: translateY(-10px)!important;
-      }
+        transform: translateY(-10px) !important;
+    }
 }
+
 :root {
     --primary: #ef550b;
     --red: #a6d07d;
@@ -116,7 +148,8 @@ hr {
     overflow: hidden;
     text-decoration: none;
     margin-bottom: 30px;
-    fa-icon{
+
+    fa-icon {
         margin-left: 10px;
     }
 }
@@ -183,6 +216,7 @@ hr {
     background-color: var(--primary) !important;
     color: var(--primary-text);
     display: flex;
+
     button {
         display: flex;
         justify-content: center;
@@ -230,6 +264,7 @@ hr {
     color: var(--primary-darker);
     display: flex;
     flex-direction: column;
+
     .cover {
         position: sticky;
         top: 0;
@@ -308,6 +343,11 @@ hr {
             }
         }
 
+    }
+
+    .no-cover {
+        padding-top: 120px!important;
+        background-color: red;
     }
 
     .out {

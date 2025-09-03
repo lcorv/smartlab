@@ -1,1 +1,16 @@
-<p>admin works!</p>
+<div *ngIf="user" class="content no-cover r">
+    <div class="barra-admin">
+        <div class="user">
+            Ciao {{user.username}}
+        </div>
+        <div class="logout">
+            <button (click)="logout()" color="primary" mat-raised-button>logout</button>
+        </div>
+    </div>
+    <mat-tab-group mat-stretch-tabs="false" color="primary" mat-align-tabs="start">
+        <mat-tab label="Gestisci operatori"><app-gestisci-operatori></app-gestisci-operatori></mat-tab>
+        <mat-tab label="Gestisci servizi"><app-gestisci-servizi></app-gestisci-servizi></mat-tab>
+        <mat-tab label="Gestisci informazioni sito"><app-site-info></app-site-info></mat-tab>
+        <mat-tab label="Gestisci orari"><app-gestisci-orari></app-gestisci-orari></mat-tab>
+    </mat-tab-group>
+</div>

@@ -1,0 +1,57 @@
+<div class="barra-admin">
+    <div class="title">
+        <h2 class="text-center">Gestisci Servizi</h2>
+    </div>
+    <div>
+        <button (click)="onCreate()" color="primary" mat-raised-button>
+            <mat-icon>add</mat-icon> Crea servizio
+        </button>
+    </div>
+</div>
+<div class="container-fluid">
+    <table class="table table-striped table-hover">
+        <thead class="table-primary">
+            <tr>
+                <th>
+                    <button mat-button (click)="order('id')">
+                        <mat-icon *ngIf="params.orderBy == 'id' && params.dir == 'ASC'">arrow_upward</mat-icon>
+                        <mat-icon *ngIf="params.orderBy == 'id' && params.dir == 'DESC'">arrow_downward</mat-icon> ID
+                    </button>
+                </th>
+                <th>
+                    <button mat-button (click)="order('titolo')">
+                        <mat-icon *ngIf="params.orderBy == 'titolo' && params.dir == 'ASC'">arrow_upward</mat-icon>
+                        <mat-icon *ngIf="params.orderBy == 'titolo' && params.dir == 'DESC'">arrow_downward</mat-icon> Titolo
+                    </button>
+                </th>
+                <th>
+                    <button mat-button (click)="order('descrizione')">
+                        <mat-icon *ngIf="params.orderBy == 'descrizione' && params.dir == 'ASC'">arrow_upward</mat-icon>
+                        <mat-icon *ngIf="params.orderBy == 'descrizione' && params.dir == 'DESC'">arrow_downward</mat-icon> Descrizione
+                    </button>
+                </th>
+                <th>Immagine</th>
+                <th>Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let servizio of servizi">
+                <td>{{ servizio.id }}</td>
+                <td>{{ servizio.titolo }}</td>
+                <td>{{ servizio.descrizione }}</td>
+                <td><img class="image" [src]="servizio.immagine" alt="Immagine servizio"></td>
+                <td class="azioni">
+                    <button mat-icon-button color="primary" (click)="openPreview(servizio)">
+                        <mat-icon>open_in_new</mat-icon>
+                    </button>
+                    <button mat-icon-button color="primary" (click)="onEdit(servizio)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="onDelete(servizio)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

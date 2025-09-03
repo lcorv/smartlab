@@ -3,7 +3,7 @@ import { Icons } from './shared/icons';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { routeAnim } from './animations/routeAnimation';
 import { filter, map, mergeMap } from 'rxjs';
-import { MatButton } from '@angular/material/button';
+import { MatButton, MatButtonModule, MatIconButton } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FooterComponent } from './footer/footer.component';
@@ -13,6 +13,7 @@ import { NavbarDirective } from './directives/navbar.directive';
 import { EnterDirective } from "./directives/enter.directive";
 import { StaggerDirective } from "./directives/stagger.directive";
 import { MatRippleModule } from '@angular/material/core';
+import { MatMiniFabButton } from "../../node_modules/@angular/material/button/index";
 
 
 
@@ -22,7 +23,7 @@ import { MatRippleModule } from '@angular/material/core';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [MatToolbarModule, MatSidenavModule, MatRippleModule, RouterModule, FooterComponent, FontAwesomeModule, MatButton, ProgressDirective, NavbarDirective, EnterDirective, StaggerDirective],
+  imports: [MatToolbarModule,MatButtonModule, MatSidenavModule, MatRippleModule, RouterModule, FooterComponent, FontAwesomeModule, MatButton, ProgressDirective, NavbarDirective, EnterDirective, StaggerDirective],
   animations: [routeAnim()]
 })
 export class AppComponent {

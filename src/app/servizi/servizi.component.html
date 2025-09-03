@@ -5,11 +5,11 @@
         </div>
     </div>
 </div>
-<div class="content" appEnter>
-    <div class="row justify-content-center">
+<div class="content">
+    <div class="row justify-content-center" *ngIf="servizi" appEnter>
         <div class="col-12 col-md-6 servizi">
             <div class="row">
-                @for (servizio of servizi; track servizio.titolo) {
+                @for (servizio of servizi; track servizio.id) {
                 <div class="col-12 col-md-4 mb-5 servizio enter" mat-ripple>
                     <div (click)="openDialog(servizio)" class="row justify-content-center">
                         <div class="image mb-3">
@@ -25,7 +25,7 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-12 col-md-6 servizi">
+        <div class="col-12 col-md-6 servizi"  appEnter>
             <app-carousel></app-carousel>
         </div>
     </div>

@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>Modifica {{servizio.titolo}}</h2>
+<mat-dialog-content>
+  <h2 class="text-center mb-4">Modifica Servizio</h2>
+  <form *ngIf="formData" [formGroup]="formData" (ngSubmit)="onSubmit()">
+    <!-- Titolo -->
+    <mat-form-field class="w-100 mb-3" appearance="outline">
+      <mat-label>Titolo</mat-label>
+      <input matInput type="text" formControlName="titolo" required />
+    </mat-form-field>
+
+    <!-- Sottotitolo -->
+    <mat-form-field class="w-100 mb-3" appearance="outline">
+      <mat-label>Sottotitolo</mat-label>
+      <input matInput type="text" formControlName="sottotitolo" />
+    </mat-form-field>
+
+    <!-- Descrizione -->
+    <mat-form-field class="w-100 mb-3" appearance="outline">
+      <mat-label>Descrizione</mat-label>
+      <textarea matInput rows="4" formControlName="descrizione"></textarea>
+    </mat-form-field>
+
+    <!-- Testo -->
+    <mat-form-field class="w-100 mb-3" appearance="outline">
+      <mat-label>Testo</mat-label>
+      <textarea matInput rows="4" formControlName="testo"></textarea>
+    </mat-form-field>
+
+    <!-- Pulsanti -->
+    <div class="d-flex justify-content-between mt-4">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!formData.valid">Salva</button>
+      <button mat-raised-button color="warn" type="button" (click)="onCancel()">Annulla</button>
+    </div>
+  </form>
+</mat-dialog-content>

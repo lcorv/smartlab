@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { flyInHome } from '../animations/enterAnimations';
 import { delay } from 'rxjs';
 import { SkillsComponent } from "../skills/skills.component";
@@ -16,6 +16,9 @@ import { Icons } from '../shared/icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StaggerDirective } from "../directives/stagger.directive";
 import { ScrubDirective } from "../directives/scrub.directive";
+import { SiteInfo } from '../shared/siteInfo';
+import { SiteInfoService } from '../services/site-info.service';
+import { AnimatedLogoComponent } from '../animated-logo/animated-logo.component';
 
 
 @Component({
@@ -23,17 +26,21 @@ import { ScrubDirective } from "../directives/scrub.directive";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   animations:[flyInHome()],
-  imports: [SkillsComponent, FontAwesomeModule, CarouselComponent, RouterModule, ContactusComponent, CommonModule, TextAnimationDirective, BackgroundColorDirective, EnterDirective, StaggerDirective, ParallaxDirective, StaggerDirective, ScrubDirective],
+  imports: [SkillsComponent, AnimatedLogoComponent, FontAwesomeModule, CarouselComponent, RouterModule, ContactusComponent, CommonModule, TextAnimationDirective, BackgroundColorDirective, EnterDirective, StaggerDirective, ParallaxDirective, StaggerDirective, ScrubDirective],
 })
 export class HomeComponent implements OnInit {
 init:boolean = true;
-constants = CONSTANTS;
 icons = Icons;
+constants: SiteInfo;
+infoService = inject(SiteInfoService);
 
   constructor() { }
 
   ngOnInit(): void {
     console.log('home init');
+    this.infoService.getSiteInfo().subscribe({
+      next: (data)=> this.constants = data
+    })
     this.init = true;
   }
   ngAfterViewInit(){

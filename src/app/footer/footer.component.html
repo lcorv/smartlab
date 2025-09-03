@@ -1,4 +1,4 @@
-<footer class="footer" fxFlex fxLayoutAlign="start space-between" fxLayout="row wrap">
+<footer *ngIf="constants" class="footer" fxFlex fxLayoutAlign="start space-between" fxLayout="row wrap">
     <div class="footer-social">
         <a href="{{constants.facebook}}" target="_blank">
             <fa-icon [icon]="Icons.faFacebookF"></fa-icon>
@@ -48,7 +48,7 @@
         </ul>
     </div>
     <div class="copyright" fxFlex="100" fxLayoutAlign="center center">
-        <p>Copyright © {{date|date:'YYYY'}} Smarlab riparazioni. Tutti i
+        <p>Copyright © {{date|date:'YYYY'}} {{constants.site_name}}. Tutti i
             diritti riservati. <br> Designed by Luca Corvino</p>
     </div>
 </footer>
