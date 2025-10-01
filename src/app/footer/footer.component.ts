@@ -7,16 +7,20 @@ import { IconsDirective } from '../directives/icons.directive';
 import { OrariComponent } from '../orari/orari.component';
 import { SiteInfo } from '../shared/siteInfo';
 import { SiteInfoService } from '../services/site-info.service';
+import { AnalyticsService } from '../services';
+import { RouterLink, RouterModule } from "@angular/router";
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
-  imports: [FontAwesomeModule, CommonModule, IconsDirective, OrariComponent]
+  providers: [AnalyticsService],
+  imports: [FontAwesomeModule, CommonModule, IconsDirective, OrariComponent, RouterLink, RouterModule]
 })
 export class FooterComponent implements OnInit {
   constants: SiteInfo;
   infoService = inject(SiteInfoService);
+  analytics = inject(AnalyticsService);
   Icons = Icons;
   date = new Date(Date.now());
   constructor() { }
@@ -25,6 +29,7 @@ export class FooterComponent implements OnInit {
     this.infoService.getSiteInfo().subscribe({
       next:(data)=> this.constants = data
     })
+    this.analytics.trackEvent('footer caricato','test footer caricato','caricamenti');
   }
 
 }

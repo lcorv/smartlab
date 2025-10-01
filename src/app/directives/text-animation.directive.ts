@@ -1,29 +1,34 @@
-import { Directive, ElementRef } from '@angular/core';
+import { Directive, ElementRef, inject } from '@angular/core';
 import anime from 'animejs/lib/anime.es.js';
-import { gsap } from 'gsap/gsap-core';
-import { ScrollTrigger } from 'gsap/all';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { PlatformService } from '../services/platform.service';
 
 @Directive({
   selector: '[appTextAnimation]'
 })
 export class TextAnimationDirective {
 
+  platform = inject(PlatformService);
+
   constructor(private el: ElementRef) { }
   ngAfterViewInit() {
-    console.log('text animation directive');
-    gsap.registerPlugin(ScrollTrigger);
-    setTimeout(()=>{
-      this.startGsap()
-    })
-  
+    if(this.platform.isBrowser()){
+      gsap.registerPlugin(ScrollTrigger);
+      setTimeout(() => {
+        this.startGsap()
+      })
+    }
   }
+
   ngOnDestroy() {
     let scrollTriggers = ScrollTrigger.getAll();
     scrollTriggers.forEach((trigger) => {
       trigger.kill();
     })
   }
-  startGsap(){
+
+  startGsap() {
     gsap.to('.text-anim', {
       scrollTrigger: {
         trigger: this.el.nativeElement,
@@ -34,8 +39,9 @@ export class TextAnimationDirective {
       }
     })
   }
+  
   animateText() {
-    // Wrap every letter in a span
+    // Wrap every letter in a span      
     let textWrapper = this.el.nativeElement;
     let words = (textWrapper.textContent.toString().split(' '))
     let newArray = words.map((word) => `<span style='display: inline-block'>${word.replace(/\S/g, "<span class='letter' style='display:inline-block;'>$&</span>")}</span>`);
@@ -49,7 +55,7 @@ export class TextAnimationDirective {
       })
       .add({
         targets: this.el.nativeElement.querySelectorAll('.letter'),
-        translateY: ["1.1em", 0],
+        translateY: ["2em", 0],
         translateZ: 0,
         opacity: 1,
         duration: 750,

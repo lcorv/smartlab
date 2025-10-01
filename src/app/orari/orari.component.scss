@@ -1,12 +1,13 @@
+h2{
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
 .orario-settimanale{
     display: block;
     justify-content: center;
     font-size: 0.75rem;
-    h1{
-        text-align: center;
-        font-size: 1.5rem;
-        margin-bottom: 10px;
-    }
+    padding: 30px 0;
     .giorno{
         display: flex;
         justify-content: space-between;
@@ -26,4 +27,8 @@
         background-color: #fff2;
         cursor: default;
     }
+}
+
+@media screen and (max-width:956px) {
+
 }

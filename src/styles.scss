@@ -1,34 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+
 @use '@angular/material' as mat;
 
 // Then import Bootstrap
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 .alert-success {
-  background-color: #4caf50; /* Verde */
-  color: white;
+    background-color: #4caf50;
+    /* Verde */
+    color: white;
 }
 
 .alert-error {
-  background-color: #f44336; /* Rosso */
-  color: white;
+    background-color: #f44336;
+    /* Rosso */
+    color: white;
 }
 
 .alert-info {
-  background-color: #2196f3; /* Blu */
-  color: white;
+    background-color: #2196f3;
+    /* Blu */
+    color: white;
 }
 
 :root {
-  @include mat.tabs-overrides((
-      active-focus-indicator-color: var(--primary),
-      active-focus-label-text-color: var(--primary),
-      inactive-label-text-color: #aaa,
-      pagination-icon-color:#fff,
-      background-color:#fff,
-      foreground-color:#fff
-
-  ));
+    @include mat.tabs-overrides((active-focus-indicator-color: var(--primary),
+            active-focus-label-text-color: var(--primary),
+            inactive-label-text-color: #aaa,
+            pagination-icon-color:#fff,
+            background-color:#fff,
+            foreground-color:#fff));
+    font-size: 16px;
 }
+
 .mat-mdc-tab-labels {
     background-color: #fff;
 }
@@ -39,12 +43,11 @@ body {
 
 .r {
     border: 1px solid red;
-    ;
+
 }
 
-.enter {
-    opacity: 0;
-    transform: translateY(-100px);
+.b{
+    border:  1px solid blue;
 }
 
 .text-anim {
@@ -73,25 +76,28 @@ body {
 }
 
 :root {
-    --primary: #ef550b;
+    --primary: #ed5511;
+    --primary-highlight: #f47c44;
     --red: #a6d07d;
     --primary-darker: #111;
     --primary-text: #fff;
 }
 
 * {
-    font-family: "Open Sans", sans-serif;
     scrollbar-width: thin;
     scrollbar-color: #ddd var(--primary);
     margin: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
+    font-family: 'Manrope', 'Roboto', sans-serif!important;
+
 }
 
 :root::-webkit-scrollbar {
     width: 5px;
     background-color: #fff;
+    z-index: 100;
 }
 
 :root::-webkit-scrollbar-thumb {
@@ -107,15 +113,42 @@ h6 {
 }
 
 h1 {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     line-height: 3.3rem;
-    font-weight: bold;
+    font-weight: bolder;
     margin: 1rem 0;
 }
 
+h2 {
+    font-size: 1.6rem;
+}
+
+h3 {
+    font-size: 1.2rem;
+}
+
 hr {
+    margin: 0 auto;
     border: 2px solid var(--primary-darker);
     background-color: var(--primary-darker);
+}
+
+.text-highlight{
+    background:linear-gradient(45deg, var(--primary), var(--primary-highlight));
+    background-clip: text;
+    color: transparent;
+}
+
+.text-big {
+    margin: 80px 0;
+
+    h1,
+    h2 {
+        text-align: center;
+        font-size: 3.5rem;
+        font-weight: bolder;
+        line-height: 4rem;
+    }
 }
 
 .bg-r {
@@ -213,8 +246,8 @@ hr {
 
 .sidenav {
     width: 300px;
-    background-color: var(--primary) !important;
-    color: var(--primary-text);
+    background: #efefef !important;
+    color: var(--primary) !important;
     display: flex;
 
     button {
@@ -224,6 +257,8 @@ hr {
         height: 50px;
         width: 100%;
         margin: 10px;
+        color: var(--primary) !important;
+
     }
 
     @keyframes active {
@@ -248,6 +283,8 @@ hr {
 }
 
 .sidenav-content {
+    width: 100%;
+    padding: 0;
     max-height: 100svh;
     overflow: auto;
 }
@@ -258,12 +295,14 @@ hr {
 
 .main {
     margin: 0;
+    padding: 0;
     position: relative;
     min-height: 100svh;
     width: 100%;
     color: var(--primary-darker);
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
 
     .cover {
         position: sticky;
@@ -275,8 +314,15 @@ hr {
         height: 100svh;
         overflow: hidden;
         z-index: 0;
-        background-color: #111;
         color: #fff;
+        .image{
+            display: flex;
+            justify-content: center;
+            background:var(--primary);
+            img{
+                width: 100%;
+            }
+        }
 
         .title {
             position: absolute;
@@ -287,11 +333,29 @@ hr {
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #0009;
+            background-color: #0004;
 
             .text-wrapper {
                 max-width: 800px;
                 margin: 2rem 0;
+                text-align: center;
+
+                .icon {
+                    font-size: 60px;
+                    animation: iconMove 0.5s alternate infinite;
+                    color: var(--primary);
+                }
+
+                @keyframes iconMove {
+                    from {
+                        transform: translateY(0px)scale(1);
+                    }
+
+                    to {
+                        transform: translateY(10px)scale(0.9);
+                        opacity: 0.8;
+                    }
+                }
             }
 
             .action {
@@ -305,15 +369,10 @@ hr {
     .content {
         z-index: 2;
         position: relative;
-        margin: 0 0px 0 0px;
-        border-radius: 15px 15px 0 0;
-        box-shadow: 0px -5px 20px #0004;
-        padding: 100px 20px 200px 20px;
+        margin: 0;
+        background-color: #fff;
         min-height: 100svh;
-        max-width: 100%;
-        overflow-x: hidden;
-        background-color: var(--primary);
-
+        width: 100%;
         .text {
             font-size: 16px;
             padding: 20px;
@@ -323,15 +382,50 @@ hr {
             padding: 100px 0;
         }
 
-        .section {
-            min-height: 90vh;
-            align-items: center;
-            flex-wrap: wrap;
-            padding: 0 200px;
-            color: var(--primary-darker);
+        .intermezzo {
+            color: #444;
+            text-align: center;
+            margin: 100px auto;
+        }
 
-            .h1 {
-                font-size: 4rem;
+        .section {
+            align-items: start;
+            flex-wrap: wrap;
+            color: var(--primary-darker);
+            padding: 30px 0;
+            border-radius: 15px;
+            background: linear-gradient(#fff, #f2f5f9);
+            .message {
+                border-radius: 10px;
+                margin: 30px 0;
+                background-color: #fff;
+                padding: 20px 30px;
+
+                ul {
+                    padding: 0;
+
+                    li {
+                        text-decoration: none;
+                        list-style: none;
+                    }
+                }
+            }
+
+            h2 {
+                color: #444;
+            }
+
+            h3 {
+                color: #555;
+            }
+
+            h4 {
+                color: #666
+            }
+
+            p,
+            li {
+                color: #777;
             }
 
             .action {
@@ -346,8 +440,8 @@ hr {
     }
 
     .no-cover {
-        padding-top: 120px!important;
-        background-color: red;
+        padding-top: 120px !important;
+        background-color: var(--primary);
     }
 
     .out {
@@ -358,7 +452,7 @@ hr {
 
 @media screen and (max-width:960px) {
     :root {
-        font-size: 12px;
+        font-size: 16px;
     }
 
     .main {
@@ -375,17 +469,24 @@ hr {
                     h4 {
                         font-size: 1.5rem;
                     }
-
-                    h1 {}
                 }
             }
         }
 
         .content {
-            padding: 40px 20px;
-
             .section {
                 padding: 5px;
+
+                .message {
+
+                    h1,
+                    h2,
+                    h3,
+                    ul,
+                    p {
+                        margin: 10px;
+                    }
+                }
 
                 .action {
                     margin-top: 30px;
@@ -398,6 +499,3 @@ hr {
         }
     }
 }
-
-/* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';

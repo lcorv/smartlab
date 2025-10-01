@@ -1,9 +1,10 @@
 .cover {
-    background-image: url('../../../public/images/contact.jpg');
+    background: #fff;
 }
 
 .content {
     color: #fff;
+
     .text {
         h1 {
             text-align: center;
@@ -116,23 +117,22 @@
                     color: #ff0505;
                 }
             }
-            .form-actions{
+
+            .form-actions {
                 margin: 30px;
             }
         }
     }
 
     .form-container:hover {
-
         transform: translateY(0%);
         opacity: 1;
-
     }
 }
 
 .email {
-    margin: 0 0 50px 0;
     transition: all 0.5S;
+    background-color: var(--primary);
 
     .title {
         h1 {
@@ -147,13 +147,24 @@
 .whatsapp {
     --primary: #25D366;
     background-color: #128C7E;
-    border-radius: 10px;
+    margin: 0;
+    border-radius: 0px;
     transition: all 0.5s;
 }
 
+.call-now {
+    background-color: var(--primary);
+
+    h1 {
+        font-size: 3rem;
+        text-align: center;
+    }
+}
+
 @media screen and (max-width:960px) {
-    .content{
+    .content {
         padding: 0;
+
         .form-actions {
             .btn {
                 margin: 50px 0 100px 0;

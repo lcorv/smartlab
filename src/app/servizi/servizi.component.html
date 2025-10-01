@@ -1,16 +1,22 @@
 <div class="cover" appParallax>
+     <div class="animated-logo">
+        <app-animated-logo [path]="'images/servizi_anim.json'"></app-animated-logo>
+    </div>
     <div class="title">
         <div class="text-wrapper">
             <h1 @flyIn *ngIf="init" class="w-100">Scopri i nostri servizi</h1>
+              <div class="icon">
+                <fa-icon [icon]="icons.faChevronDown"></fa-icon>
+            </div>
         </div>
     </div>
 </div>
 <div class="content">
-    <div class="row justify-content-center" *ngIf="servizi" appEnter>
-        <div class="col-12 col-md-6 servizi">
-            <div class="row">
+    <div class="row justify-content-center" *ngIf="servizi" >
+        <div class="col-12 col-xl-6 servizi">
+            <div class="row justify-content-center" appEnter direction="batch">
                 @for (servizio of servizi; track servizio.id) {
-                <div class="col-12 col-md-4 mb-5 servizio enter" mat-ripple>
+                <div class="col-8 col-lg-4 mb-5 servizio" mat-ripple>
                     <div (click)="openDialog(servizio)" class="row justify-content-center">
                         <div class="image mb-3">
                             <img [src]="servizio.immagine" alt="{{servizio.titolo}}">
@@ -25,7 +31,7 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-12 col-md-6 servizi"  appEnter>
+        <div class="col-12 col-xl-6 servizi">
             <app-carousel></app-carousel>
         </div>
     </div>

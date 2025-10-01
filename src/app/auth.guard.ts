@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID, TransferState } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { jwtDecode } from 'jwt-decode';
+import { isPlatformServer } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, @Inject(PLATFORM_ID)private platformID: Object, private transferState: TransferState) {}
 
    canActivate(): boolean {
     const token = localStorage.getItem('authToken');

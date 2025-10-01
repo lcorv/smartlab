@@ -1,5 +1,6 @@
-import { Directive, ElementRef } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
+import { Directive, ElementRef, inject, Inject } from '@angular/core';
+import { PlatformService } from '../services/platform.service';
 
 @Directive({
   selector: '[appNavbar]'
@@ -7,18 +8,32 @@ import { NavigationStart, Router } from '@angular/router';
 export class NavbarDirective {
   scrollWhatcher: HTMLDivElement;
   navObserver: IntersectionObserver;
+    platform = inject(PlatformService);
+
   constructor(
     private el: ElementRef,
+    @Inject(DOCUMENT) private document: Document
   ) { }
-ngOnInit(){
-  this.scrollWhatcher = document.createElement('div');
-  this.scrollWhatcher.setAttribute('data-scroll-watcher','');
-  this.navObserver = new IntersectionObserver((entries)=>{
-    this.el.nativeElement.classList.toggle('sticking', !entries[0].isIntersecting)
-  })
+  ngOnInit() {
+    if(this.platform.isBrowser()){
+      this.init();
+    }
   }
-ngAfterViewInit(){
-  this.el.nativeElement.before(this.scrollWhatcher);
-  this.navObserver.observe(this.scrollWhatcher)
-}
+  ngAfterViewInit() {
+    if(this.platform.isBrowser()){
+      this.set();
+    }
+  }
+  init() {
+      this.scrollWhatcher = this.document.createElement('div');
+      this.scrollWhatcher.setAttribute('data-scroll-watcher', '');
+      if (!window) return
+      this.navObserver = new IntersectionObserver((entries) => {
+        this.el.nativeElement.classList.toggle('sticking', !entries[0].isIntersecting)
+      })
+  }
+  set() {
+      this.el.nativeElement.before(this.scrollWhatcher);
+      this.navObserver.observe(this.scrollWhatcher)
+  }
 }

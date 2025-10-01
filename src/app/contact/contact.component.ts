@@ -11,10 +11,12 @@ import { ParallaxDirective } from '../directives/parallax.directive';
 import { CONSTANTS } from '../shared/constants';
 import { SiteInfo } from '../shared/siteInfo';
 import { SiteInfoService } from '../services/site-info.service';
+import { AnalyticsService } from '../services';
+import { AnimatedLogoComponent } from "../animated-logo/animated-logo.component";
 
 @Component({
   selector: 'app-contact',
-  imports: [FontAwesomeModule, FormsModule, CommonModule, ReactiveFormsModule, EnterDirective, MatInputModule, MatButtonModule, ParallaxDirective],
+  imports: [FontAwesomeModule, FormsModule, CommonModule, ReactiveFormsModule, EnterDirective, MatInputModule, MatButtonModule, ParallaxDirective, AnimatedLogoComponent],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
   animations: [flyIn()],
@@ -25,6 +27,7 @@ export class ContactComponent implements OnInit {
   Icons = Icons;
   constants: SiteInfo;
   infoService = inject(SiteInfoService);
+  analytics = inject(AnalyticsService);
   emailLink: string = '';
   email: string;
   telNum: string;
@@ -74,22 +77,26 @@ export class ContactComponent implements OnInit {
   ngOnInit(): void {
     this.createForm();
     this.infoService.getSiteInfo().subscribe({
-      next: (data)=>{
+      next: (data) => {
         this.constants = data;
         this.email = data.email
         this.telNum = data.phone;
         this.whatsapp = data.whatsapp;
       }
     })
+    this.analytics.trackEvent('page_view', 'pagina_contact_caricata', 'page_load')
+
   }
   onSubmit(media) {
     if (media == 'email') {
+      this.analytics.trackEvent('contact_email', 'invio_email_contact_page', 'contact')
       let form = this.contactForm.value;
       this.emailLink = `mailto: ${this.email}?&subject=${form.subject}&body=${form.message}&body=${form.firstname}`
       console.log(this.emailLink)
       location.href = this.emailLink
     }
     if (media == 'whatsapp') {
+      this.analytics.trackEvent('contact_whatsapp', 'invio_whatsapp_contact_page', 'contact')
       let form = this.whatsappForm.value;
       this.wmsg = `https://wa.me/${this.whatsapp}?text=${form.message}`;
       console.log(this.wmsg)

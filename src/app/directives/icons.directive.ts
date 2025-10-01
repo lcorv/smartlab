@@ -1,17 +1,21 @@
-import { Directive, ElementRef} from '@angular/core';
+import { afterNextRender, Directive, ElementRef, inject } from '@angular/core';
+import { PlatformService } from '../services/platform.service';
 
 @Directive({
   selector: '[appIcons]'
 })
 export class IconsDirective {
-observer;
+  platform = inject(PlatformService);
+  observer;
   constructor(
     private el: ElementRef
   ) { }
-  ngOnInit(){
-    this.observer = new IntersectionObserver((entries)=>{
+  ngOnInit() {
+    if(this.platform.isBrowser()){
+      this.observer = new IntersectionObserver((entries) => {
         this.el.nativeElement.classList.toggle('animicon', !entries[0].isIntersecting)
-    })
-    this.observer.observe(this.el.nativeElement)
+      })
+      this.observer.observe(this.el.nativeElement)
     }
   }
+}

@@ -34,12 +34,18 @@
             ],
             "styles": [
               "_theme.scss",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/cookieconsent/build/cookieconsent.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/cookieconsent/build/cookieconsent.min.js"
+            ]
           },
           "configurations": {
             "production": {
+              "security": {
+              "autoCsp": true
+              },
               "budgets": [
                 {
                   "type": "initial",
@@ -50,6 +56,12 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "4kB",
                   "maximumError": "8kB"
+                }
+              ],
+               "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.development.ts",
+                  "with": "src/environments/environment.ts"
                 }
               ],
               "outputHashing": "all"

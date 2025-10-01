@@ -1,4 +1,4 @@
-<div *ngIf="user" class="content no-cover r">
+<div *ngIf="user" class="content no-cover">
     <div class="barra-admin">
         <div class="user">
             Ciao {{user.username}}
@@ -12,5 +12,6 @@
         <mat-tab label="Gestisci servizi"><app-gestisci-servizi></app-gestisci-servizi></mat-tab>
         <mat-tab label="Gestisci informazioni sito"><app-site-info></app-site-info></mat-tab>
         <mat-tab label="Gestisci orari"><app-gestisci-orari></app-gestisci-orari></mat-tab>
+        <mat-tab label="Gestisci avvisi"><app-gestisci-avvisi></app-gestisci-avvisi></mat-tab>
     </mat-tab-group>
 </div>

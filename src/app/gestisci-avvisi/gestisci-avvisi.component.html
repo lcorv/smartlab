@@ -1,0 +1,52 @@
+<div class="barra-admin">
+  <div class="title">
+    <h2 class="text-center">Gestisci Avvisi</h2>
+  </div>
+  <div>
+    <button (click)="onCreate()" color="primary" mat-raised-button>
+      <mat-icon>add</mat-icon> Crea Avviso
+    </button>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <table class="table table-striped table-hover">
+    <thead class="table-primary">
+      <tr>
+        <th>ID</th>
+        <th>Titolo</th>
+        <th>Tipo</th>
+        <th>Attivo</th>
+        <th>Data Inizio</th>
+        <th>Data Fine</th>
+        <th> Immagine </th>
+        <th>Azioni</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let avviso of avvisi">
+        <td>{{ avviso.id }}</td>
+        <td>{{ avviso.titolo }}</td>
+        <td>{{ avviso.tipo }}</td>
+        <td>
+          <mat-slide-toggle (toggleChange)="toggleAvviso(avviso)" [(ngModel)]="avviso.attivo"></mat-slide-toggle>
+        </td>
+        <td>{{ avviso.data_inizio | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ avviso.data_fine | date: 'dd/MM/yyyy' }}</td>
+        <td>
+            <div >
+                <img class="image" [src]="avviso.image" alt="">
+            </div>
+        </td>
+        <td>
+          <button mat-icon-button color="primary" (click)="onEdit(avviso)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="onDelete(avviso)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,20 +1,20 @@
-<footer *ngIf="constants" class="footer" fxFlex fxLayoutAlign="start space-between" fxLayout="row wrap">
+<footer *ngIf="constants" class="footer container-fluid">
     <div class="footer-social">
-        <a href="{{constants.facebook}}" target="_blank">
+        <a (click)="analytics.trackEvent('facebook-footer', 'click on footer Facebook button','social')" href="{{constants.facebook}}" target="_blank">
             <fa-icon [icon]="Icons.faFacebookF"></fa-icon>
         </a>
-         <a href="{{constants.instagram}}" target="_blank">
+         <a (click)="analytics.trackEvent('instagram-footer', 'click on footer Instagram button','social')" href="{{constants.instagram}}" target="_blank">
             <fa-icon [icon]="Icons.faInstagram"></fa-icon>
         </a>
     </div>
     <div class="orari">
-        <app-orari></app-orari>
+        <app-orari ngSkipHydration></app-orari>
     </div>
-    <div class="footer-contacts">
-        <h3 fxFlex="100">Contatti:</h3>
-        <ul fxFlex="100">
+    <div class="row justify-content-center footer-contacts">
+        <h3 class="col-10">Contatti:</h3>
+        <ul class="col-10">
             <li>
-                <a href="mailto:{{constants.email}}" target="_blank">
+                <a (click)="analytics.trackEvent('email-footer', 'click on footer email button','contact')" href="mailto:{{constants.email}}" target="_blank">
                     <span appIcons>
                         <fa-icon [icon]="Icons.faEnvelope"></fa-icon>
                     </span>
@@ -22,7 +22,7 @@
                 </a>
             </li>
             <li>
-                <a href="tel:{{constants.phone}}" target="_blank">
+                <a (click)="analytics.trackEvent('telefono-footer', 'click on footer phone button','contact')" href="tel:{{constants.phone}}" target="_blank">
                     <span appIcons>
                         <fa-icon [icon]="Icons.faPhone"></fa-icon>
                     </span>
@@ -30,7 +30,7 @@
                 </a>
             </li>
             <li>
-                <a href="https://wa.me/{{constants.whatsapp}}" target="_blank">
+                <a (click)="analytics.trackEvent('whatsapp-footer', 'click on footer whatsapp button','contact')" href="https://wa.me/{{constants.whatsapp}}" target="_blank">
                     <span appIcons>
                         <fa-icon [icon]="Icons.faWhatsapp"></fa-icon>
                     </span>
@@ -47,8 +47,9 @@
             </li>
         </ul>
     </div>
-    <div class="copyright" fxFlex="100" fxLayoutAlign="center center">
+    <div class="copyright row" fxFlex="100" fxLayoutAlign="center center">
+        <p><a target="_blank" routerLink="/privacy-policy">Informativa sulla Privacy</a></p>
         <p>Copyright © {{date|date:'YYYY'}} {{constants.site_name}}. Tutti i
-            diritti riservati. <br> Designed by Luca Corvino</p>
+            diritti riservati. <br> Designed by Smartlab</p>
     </div>
 </footer>

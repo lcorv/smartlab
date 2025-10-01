@@ -1,0 +1,14 @@
+<div class="status" *ngIf="status">
+    @if(!prossimaRiapertura){
+    <div class="spinner-grow spinner-grow-sm" [ngClass]="status.class" role="status"></div>
+    <div class="message">
+        {{status.status|titlecase}}, {{status.nextTime|lowercase}}
+    </div>
+    }
+    @else {
+    <div class="spinner-grow spinner-grow-sm danger" role="status"></div>
+    <div class="message">
+        Chiuso, riapre il {{prossimaRiapertura|date:'dd/MM/yyyy'}}
+    </div>
+    }
+</div>

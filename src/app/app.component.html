@@ -2,7 +2,7 @@
   <mat-drawer #drawer class="sidenav" position="end" mode="push">
     <div fxFlex="80" fxLayout="column" class="buttons">
       <div class="logo" routerLink="home">
-        <img src="/images/logo_simple.svg" alt="samnium projects logo">
+        <img src="images/logo_testo.svg" alt="SmartLab logo">
       </div>
       <button routerLinkActive="active" (click)="drawer.close()" mat-button routerLink="home">Home</button>
       <button routerLinkActive="active" (click)="drawer.close()" mat-button routerLink="chi-siamo">Chi siamo</button>
@@ -11,32 +11,33 @@
     </div>
   </mat-drawer>
 
-  <div class="sidenav-content" #sidenavContent appProgress appEnter appStagger>
-    <div class="main" [@routeAnim]="prepareRoute(outlet)">
-      <mat-toolbar class="navbar" appNavbar>
-        <!--         <div fxHide.lt-sm class="pointer-follow">
-          <div class="pointer-pallino">
+  <div class="sidenav-content" #sidenavContent appProgress>
+    <app-avvisi></app-avvisi>
+    <div class="main container-fluid" [@routeAnim]="prepareRoute(outlet)">
+        <mat-toolbar class="navbar" appNavbar>
+          <!--         <div fxHide.lt-sm class="pointer-follow">
+            <div class="pointer-pallino">
+            </div>
+          </div> -->
+          <div class="logo" routerLink="home" appDashoffset>
+            <img src="images/logo_simple.svg" alt="logo">
           </div>
-        </div> -->
-        <div class="logo" routerLink="home" appDashoffset>
-          <img src="/images/logo_simple.svg" alt="">
-        </div>
 
-        <div class="navigation d-md-block d-none">
-          <a mat-ripple [matRippleUnbounded]="false" routerLinkActive="active" (click)="drawer.close()" mat-button href="home" routerLink="home">Home</a>
-          <a mat-ripple [matRippleUnbounded]="false" routerLinkActive="active" (click)="drawer.close()" mat-button routerLink="chi-siamo">Chi
-            siamo</a>
-          <a mat-ripple [matRippleUnbounded]="false" routerLinkActive="active" (click)="drawer.close()" mat-button routerLink="contact">Contatti</a>
-          <a mat-ripple [matRippleUnbounded]="false" routerLinkActive="active" (click)="drawer.close()" mat-button routerLink="servizi">Servizi</a>
-        </div>
-        <button type="button" class="d-md-none d-block" mat-mini-fab
-          (click)="drawer.toggle()">
-          <fa-icon [icon]="faBars"></fa-icon>
-        </button>
-        <div class="navigation d-md-block d-none">
-        </div>
-      </mat-toolbar>
-
+          <div class="d-none d-md-block"></div>
+  
+          <div class="navigation d-md-block d-none">
+            <a mat-ripple [matRippleUnbounded]="false" routerLinkActive="active" (click)="drawer.close()" mat-button href="home" routerLink="home">Home</a>
+            <a mat-ripple [matRippleUnbounded]="false" routerLinkActive="active" (click)="drawer.close()" mat-button routerLink="chi-siamo">Chi
+              siamo</a>
+            <a mat-ripple [matRippleUnbounded]="false" routerLinkActive="active" (click)="drawer.close()" mat-button routerLink="contact">Contatti</a>
+            <a mat-ripple [matRippleUnbounded]="false" routerLinkActive="active" (click)="drawer.close()" mat-button routerLink="servizi">Servizi</a>
+          </div>
+          <app-status class="status"></app-status>
+          <button mat-ripple type="button" class="d-md-none d-block nav-button"
+            (click)="drawer.toggle()">
+            <fa-icon [icon]="faBars"></fa-icon>
+          </button>
+        </mat-toolbar>
       <router-outlet #outlet="outlet"></router-outlet>
     </div>
     <div class="scroll-top scrollspy-hidden scrollspy" (click)="scrollTop()" #scrollspy>

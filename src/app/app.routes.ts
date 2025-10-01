@@ -1,27 +1,84 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { ContactComponent } from './contact/contact.component';
-import { AboutComponent } from './about/about.component';
-import { LogoComponent } from './logo/logo.component';
-import { ServiziComponent } from './servizi/servizi.component';
-import { ServizioComponent } from './servizio/servizio.component';
-import { LoginComponent } from './login/login.component';
-import { AdminComponent } from './admin/admin.component';
+import { Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
-import { GestisciOperatoriComponent } from './gestisci-operatori/gestisci-operatori.component';
-import { CreateOperatoreComponent } from './create-operatore/create-operatore.component';
 
 export const routes: Routes = [
-  {component: HomeComponent, path:'', pathMatch: 'full'},
-  {component: HomeComponent, path:'home', data:{tab:1, name: 'home'}},
-  {component: AboutComponent, path:'chi-siamo', data:{tab:2, name: 'Chi siamo'}},
-  {component: ContactComponent, path:'contact', data:{tab:3, name: 'Contatti'}},
-  {component: ServiziComponent, path:'servizi', data:{tab:4, name: 'Servizi'}},
-  {component: ServizioComponent, path:'servizi/:id', data:{tab:4, name: 'Servizio'}},
-  {component: LoginComponent, path:'login', data:{tab:4, name: 'Login'}},
-  {component: LogoComponent, path: 'logo'},
-  {component: AdminComponent, path: 'admin-smartlab', data:{tab:5, name: 'Admin'}, canActivate: [AuthGuard]},
-  {component: GestisciOperatoriComponent, path:'gestisci-operatori', canActivate: [AuthGuard]},
-  {component: CreateOperatoreComponent, path: 'crea-operatore', canActivate: [AuthGuard]}
-]
+  {
+    path: '',
+    loadComponent: () =>
+      import('./home/home.component').then((c) => c.HomeComponent),
+    data: { tab: 1, name: 'home' },
+    pathMatch: 'full',
+  },
+  {
+    path: 'home',
+    loadComponent: () =>
+      import('./home/home.component').then((c) => c.HomeComponent),
+    data: { tab: 1, name: 'home' },
+  },
+  {
+    path: 'chi-siamo',
+    loadComponent: () =>
+      import('./about/about.component').then((c) => c.AboutComponent),
+    data: { tab: 2, name: 'Chi siamo' },
+  },
+  {
+    path: 'contact',
+    loadComponent: () =>
+      import('./contact/contact.component').then((c) => c.ContactComponent),
+    data: { tab: 3, name: 'Contatti' },
+  },
+  {
+    path: 'servizi',
+    loadComponent: () =>
+      import('./servizi/servizi.component').then((c) => c.ServiziComponent),
+    data: { tab: 4, name: 'Servizi' },
+  },
+  {
+    path: 'servizi/:id',
+    loadComponent: () =>
+      import('./servizio/servizio.component').then((c) => c.ServizioComponent),
+    data: { tab: 4, name: 'Servizio' },
+  },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./login/login.component').then((c) => c.LoginComponent),
+    data: { tab: 4, name: 'Login' },
+  },
+  {
+    path: 'logo',
+    loadComponent: () =>
+      import('./logo/logo.component').then((c) => c.LogoComponent),
+  },
+  {
+    path: 'admin-smartlab',
+    loadComponent: () =>
+      import('./admin/admin.component').then((c) => c.AdminComponent),
+    data: { tab: 5, name: 'Admin' },
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'gestisci-operatori',
+    loadComponent: () =>
+      import('./gestisci-operatori/gestisci-operatori.component').then(
+        (c) => c.GestisciOperatoriComponent
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'crea-operatore',
+    loadComponent: () =>
+      import('./create-operatore/create-operatore.component').then(
+        (c) => c.CreateOperatoreComponent
+      ),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'privacy-policy',
+    loadComponent: () =>
+      import('./privacy-policy/privacy-policy.component').then(
+        (c) => c.PrivacyPolicyComponent
+      ),
+    data: { tab: 5, name: 'Privacy policy' },
+  },
+];

@@ -1,0 +1,85 @@
+<h2 mat-dialog-title class="mb-4">Crea Avviso</h2>
+<div class="container">
+    <mat-dialog-content>
+        <form *ngIf="formData" (ngSubmit)="onSubmit()" [formGroup]="formData">
+            <div class="row">
+
+                <!-- Titolo -->
+                <div class="col-12">
+                    <mat-form-field class="w-100 mb-3" appearance="outline">
+                        <mat-label>Titolo</mat-label>
+                        <input matInput type="text" formControlName="titolo" required />
+                    </mat-form-field>
+                </div>
+
+                <!-- Tipo -->
+                <div class="col-6">            
+                    <mat-form-field class="w-100 mb-3" appearance="outline">
+                        <mat-label>Tipo</mat-label>
+                        <mat-select formControlName="tipo" required>
+                            <mat-option *ngFor="let tipo of tipiAvvisi" [value]="tipo">
+                                {{ tipo }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                
+
+            </div>
+
+
+
+            <!-- Testo -->
+            <mat-form-field class="w-100 mb-3" appearance="outline">
+                <mat-label>Testo</mat-label>
+                <textarea matInput rows="4" formControlName="testo"></textarea>
+            </mat-form-field>
+
+            <!-- Data inizio-->
+            <mat-form-field>
+                <mat-label>Data d'inizio e di fine</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                    <input matStartDate formControlName="data_inizio" placeholder="Data inizio">
+                    <input matEndDate formControlName="data_fine" placeholder="Data fine">
+                </mat-date-range-input>
+                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+
+                @if (formData.controls['data_inizio'].hasError('matStartDateInvalid')) {
+                <mat-error>Data di inizio non valida</mat-error>
+                }
+                @if (formData.controls['data_fine'].hasError('matEndDateInvalid')) {
+                <mat-error>Data di fine non valida</mat-error>
+                }
+            </mat-form-field>
+
+
+            <!-- Immagine -->
+            <div class="mb-3">
+                <label for="immagine" class="form-label">Immagine</label>
+                <input type="file" class="form-control" id="immagine" (change)="onFileSelected($event)" />
+            </div>
+
+            <!-- Descrizione -->
+            <mat-form-field class="w-100 mb-3" appearance="outline">
+                <mat-label>Descrizione</mat-label>
+                <textarea matInput rows="4" formControlName="descrizione"></textarea>
+            </mat-form-field>
+
+            <!-- Attivo -->
+                <div class="col-6 slide-toggle">
+                <div class="">
+                    <mat-slide-toggle formControlName="attivo">Attivo</mat-slide-toggle>
+                </div>
+                </div>
+
+            <!-- Pulsanti -->
+            <div class="d-flex justify-content-between mt-4">
+                <button mat-raised-button color="primary" type="submit" [disabled]="!formData.valid">Salva</button>
+                <button mat-raised-button color="warn" type="button" (click)="onCancel()">Annulla</button>
+            </div>
+        </form>
+    </mat-dialog-content>
+</div>

@@ -1,0 +1,56 @@
+<div class="container-fluid  p-0" *ngIf="reviews">
+    <h2>Cosa dicono di noi</h2>
+    <div *ngIf="reviews" class="my-carousel-container">
+        <div #carouselContainer (scrollend)="onScrollEnd(reviews)" class="my-carousel-track">
+            <div class="my-carousel-item row  p-0" [ngClass]="{'active': i===currentIndex() }"
+                *ngFor="let review of reviews; let i = index">
+                <div class="review col-12">
+                    <div class="review-header row mb-2">
+                        <div class="quote"><fa-icon [icon]="icons.faQuoteRight"></fa-icon></div>
+                        <div class="col-4 col-md-3">
+                            <div class="image">
+                                <img src="images/user-icon.png" alt="immagine recensione">
+                            </div>
+                        </div>
+                        <div class="col-7 align-center">
+                            <div class="nome col-12">
+                                <h2>
+                                    {{review.authorAttribution.displayName.split(' ')[0]}}
+                                </h2>
+                            </div>
+                            <div class="data">{{review.publishTime|date:'dd/MM/yyyy'}}</div>
+                        </div>
+                    </div>
+                    <div class="review-body row">
+                        <div class="col-12">
+                            <div class="rating mb-3">
+                                <fa-icon *ngFor="let n of numSequence(review.rating); let i $index"
+                                    [icon]="icons.faStar"></fa-icon>
+                            </div>
+                            <div class="testo">
+                                <cite>
+                                    {{review.originalText.text}}
+                                </cite>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="controls row justify-content-center">
+            <div class="indicators col-12">
+                @for( item of reviews; track $index; let i = $index){
+                @if(i!=0 && i!=reviews.length - 1){
+                <div class="indicator" [ngClass]="{'active': i === currentIndex()}"></div>
+                }
+                }
+            </div>
+            <div class="buttons mt-5 col-12">
+                <button class="carousel-btn prev" (click)="prevSlide()"><fa-icon
+                        [icon]="icons.faArrowLeft"></fa-icon></button>
+                <button class="carousel-btn next" (click)="nextSlide()"><fa-icon
+                        [icon]="icons.faArrowRight"></fa-icon></button>
+            </div>
+        </div>
+    </div>
+</div>

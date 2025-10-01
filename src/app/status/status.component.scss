@@ -1,0 +1,28 @@
+.status {
+    text-align: center;
+    font-size: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .spinner-grow {
+        font-size: 0.1rem;
+        animation-duration: 1s;
+    }
+
+    .message {
+        margin: 5px;
+    }
+
+    .warning {
+        color: #f6f632;
+    }
+
+    .danger {
+        color: #f03c3c;
+    }
+
+    .success {
+        color: #46ee46;
+    }
+}

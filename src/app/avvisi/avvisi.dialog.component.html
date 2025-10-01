@@ -1,0 +1,32 @@
+<div class="dialog-container">
+    <h2 mat-dialog-title class="titolo">{{avviso.titolo}}</h2>
+    <mat-dialog-content class="mat-typography dialog">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div *ngIf="avviso.testo" class="testo">{{avviso.testo}}</div>
+            </div>
+            <div *ngIf="avviso.tipo=='chiusura'" class="periodo">
+                @if(avviso.data_inizio && avviso.data_fine){
+                    dal {{avviso.data_inizio|date:'dd/MM/yy'}} al {{avviso.data_fine|date:'dd/MM/yy'}}
+                }
+                @else if (!avviso.data_inizio && avviso.data_fine) {
+                    fino  al {{avviso.data_fine|date:'dd/MM/yy'}}
+                }
+                @else if (avviso.data_inizio && !avviso.data_fine){
+                     dal {{avviso.data_inizio|date:'dd/MM/yy'}}
+                }
+            </div>
+            <div class="col-12">
+                <div *ngIf="avviso.image" class="immagine">
+                    <img  [src]="avviso.image" [alt]="avviso.titolo">
+                </div>
+            </div>
+            <div class="col-12">
+                <div *ngIf="avviso.descrizione" class="descrizione">{{avviso.descrizione}}</div>
+            </div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button matDialogClose="" mat-button>chiudi</button>
+    </mat-dialog-actions>
+</div>

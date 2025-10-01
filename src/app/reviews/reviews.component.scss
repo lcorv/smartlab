@@ -1,0 +1,254 @@
+h2 {
+    font-size: 3rem;
+    text-align: center;
+    margin: 40px;
+}
+
+.align-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.image {
+    height: 80px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+        width: 80px;
+    }
+}
+
+.nome {
+    h2 {
+        margin: 0;
+        text-align: left;
+        font-size: 1.2rem;
+    }
+}
+
+.data {
+    font-size: 0.8rem;
+}
+
+.rating {
+    display: flex;
+    flex-direction: row;
+    color: #fcbc2c;
+    gap: 5px;
+}
+
+.review {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+
+    .review-header {
+        .quote {
+            position: absolute;
+            right: 20px;
+            top: -20px;
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+        }
+    }
+}
+
+.row, .container-fluid{
+    padding: 0;
+}
+
+.my-carousel-container {
+    margin: 30px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.my-carousel-track {
+    -ms-overflow-style: none;
+    /* Per IE e Edge */
+    scrollbar-width: none;
+    /* Per Firefox */
+}
+
+.my-carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.my-carousel-track {
+    overflow-x: scroll;
+    /* Abilita lo scorrimento orizzontale */
+    -webkit-overflow-scrolling: touch;
+    /* Migliora lo scorrimento su iOS */
+    scroll-snap-type: x mandatory;
+    display: flex;
+    column-gap: 10%;
+    padding: 20px;
+}
+
+.my-carousel-item:first-child {
+    margin-left: 30%;
+}
+
+.my-carousel-item:last-child {
+    margin-right: 30%;
+}
+
+.my-carousel-item {
+    scroll-snap-align: center;
+    /* Aggancia l'elemento al centro del contenitore visivo */
+    flex: 0 0 50%;
+    aspect-ratio: 14/9;
+    cursor: pointer;
+    margin: 0;
+    border-radius: 20px;
+    opacity: 0.3;
+    background-color: #fff;
+    overflow: visible;
+    box-sizing: border-box;
+    /* Include padding e border nella larghezza */
+    padding: 0px;
+    transform: scale(.9);
+    transition: all 0.5s;
+    box-shadow: 5px 5px 5px #000c;
+    /* Spazio tra le immagini */
+}
+
+.my-carousel-item.active {
+    transform: scale(1);
+    box-shadow: 10px 10px 10px #0004;
+}
+
+.controls {
+    display: flex;
+
+    .buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .name {
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .carousel-btn {
+            height: 70px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background-color: #fff;
+            border-color: transparent;
+            box-shadow: 1px 1px 2px #0004;
+            position: absolute;
+            top: calc(50% - 35px);
+            transition: all 0.3s;
+        }
+
+        .carousel-btn:hover {
+            background-color: #f2f5f9;
+        }
+
+        .carousel-btn.prev {
+            left: 10px;
+        }
+
+        .carousel-btn.next {
+            right: 10px;
+        }
+
+    }
+}
+
+
+.my-carousel-item.active {
+    opacity: 1;
+}
+
+.my-carousel-item img {
+    width: 100%;
+    display: block;
+}
+
+.indicators {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+    margin-right: 20px;
+
+    .indicator {
+        flex: none;
+        height: 10px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background-color: #999;
+    }
+
+    .indicator.active {
+        background-color: #444;
+    }
+}
+
+
+.carousel-caption {
+    background: #00000080;
+    padding: 10px;
+    border-radius: 5px;
+    bottom: 0;
+}
+
+.image-wrapper {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    img {
+        width: 100%;
+        object-fit: cover;
+        transition: transform 0.5s;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .my-carousel-track{
+        column-gap: 10px;
+    }
+    .my-carousel-item {
+        aspect-ratio: 9/11;
+        flex: 0 0 90%;
+
+    }
+
+    .controls {
+        display: flex;
+
+        .buttons {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .carousel-btn {
+                height: 40px;
+                margin: 0;
+                top: 0;
+                box-shadow: 1px 1px 2px #0004;
+                position: relative;
+                transition: all 0.3s;
+            }
+        }
+    }
+
+    .indicators {
+        justify-content: center;
+    }
+}

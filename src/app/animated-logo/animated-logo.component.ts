@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AnimationItem } from 'lottie-web';
 import { AnimationOptions, LottieComponent } from 'ngx-lottie';
 
@@ -9,11 +9,16 @@ import { AnimationOptions, LottieComponent } from 'ngx-lottie';
   styleUrl: './animated-logo.component.scss'
 })
 export class AnimatedLogoComponent {
-  options: AnimationOptions = {
-    path: '/images/logo.json',
-    loop: false
-  };
+  @Input() path: string;
+  options: AnimationOptions;
+  ngOnInit(){
+    this.options = {
+      path: this.path,
+      loop: false,
+      renderer: 'svg',
+    };
+
+  }
   onAnimate(animationItem: AnimationItem): void {
-    console.log(animationItem);
   }
 }

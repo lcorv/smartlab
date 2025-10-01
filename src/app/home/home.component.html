@@ -1,85 +1,161 @@
 <div class="cover" appParallax>
     <div class="animated-logo">
-        <app-animated-logo></app-animated-logo>
+        <app-animated-logo [path]="'images/logo.json'"></app-animated-logo>
     </div>
     <div @flyIn class="title">
         <div class="text-wrapper text-anim">
-            <h6>Smartlab riparazioni</h6>
-            <h1 appTextAnimation *ngIf="init">Problemi con smartphone o computer?</h1>
+            <h6>SmartLab Riparazioni</h6>
+            <h2 appTextAnimation *ngIf="init">Problemi con smartphone o computer?</h2>
             <h4 *ngIf="init">Ricevi assistenza istantanea.</h4>
+            <div class="icon">
+                <fa-icon [icon]="icons.faChevronDown"></fa-icon>
+            </div>
         </div>
-        <div class="action">
-            <a routerLink="/contact" class="button btn-primary">Contattaci ora</a>
+        <div class="action" *ngIf="constants">
+            <a mat-ripple (click)="analytics.trackEvent('telefono-cover', 'click on home-cover phone button','contact')"
+                href="tel:{{constants.phone}}" target="_blank">
+                <span appIcons>
+                    <fa-icon [icon]="icons.faPhone"></fa-icon>
+                </span>
+            </a>
+
+            <a (click)="analytics.trackEvent('whatsapp-cover', 'click on home-cover whatsapp button','contact')"
+                href="https://wa.me/{{constants.whatsapp}}" target="_blank">
+                <span appIcons>
+                    <fa-icon [icon]="icons.faWhatsapp"></fa-icon>
+                </span>
+            </a>
+
         </div>
     </div>
 </div>
-<div *ngIf="constants" class="content" appBackgroundColor appEnter>
-    <div class="section width-100">
-        <app-skills></app-skills>
-    </div>
-    <hr class="width-50">
-    <div class="section row justify-content-center width-100" appScrub>
-
-        <div class="message col-12 enter">
-            <h1>Offriamo assistenza tecnica e software</h1>
-            <h2>per qualsiasi dispositivo</h2>
-
+<div *ngIf="constants" class="content container-fluid">
+    <div class="section row justify-content-center">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-7 text-center text-big">
+                <h1>Servizio di Riparazione <strong class="text-highlight">Smartphone</strong>, <strong
+                        class="text-highlight">Tablet</strong> e <strong class="text-highlight">Computer</strong></h1>
+            </div>
         </div>
-        <div class="image col-12 scrub">
-            <img src="/images/assistenza_tecnica.jpg" alt="riparazione smartphone">
+        <div class="message col-12 col-lg-4" appEnter direction="left">
+            <h2>Riparazioni professionali e veloci per i tuoi dispositivi.</h2>
+            <p>
+                Sappiamo quanto i tuoi dispositivi siano essenziali nella vita di tutti i giorni. <br>
+                Quando il tuo <strong class="text-highlight">smartphone</strong>, <strong
+                    class="text-highlight">tablet</strong> o <strong class="text-highlight">computer</strong> non
+                funziona, hai bisogno di un servizio affidabile. <br>
+                Noi di <strong class="text-highlight">SmartLab</strong> offriamo <strong
+                    class="text-highlight">riparazioni veloci e garantite</strong>, con un
+                servizio onesto e professionale.
+            </p>
         </div>
-
-        <div class="action col-12 col-md-6">
-            <a routerLink="/servizi" class="button w-100 btn-dark mt-5">Scopri i nostri servizi</a>
+        <div class="image col-12 col-lg-6" appEnter direction="right">
+            <img src="images/repair_phone.png" alt="riparazione smartphone">
         </div>
-    </div>
-    <hr class="width-50">
-    <div class="section row justify-content-center width-100 enter">
-        <div class="message col-12 col-md-6">
-            <h1>Per i nostri indispensabili dispositivi</h1>
-            <h2>Riparazioni veloci ed economiche per Smartphone, Tablet e Computer.</h2>
-            <h2>I tuoi dispositivi giocano un ruolo importante nella tua vita professionale, personale e scolastica.
-                Quando il tuo telefono, tablet o laptop si rompe, vuoi che un esperto si occupi della riparazione. È qui
-                che entriamo in gioco noi. Professionalità, esperienza ed onestà fanno di SmartLab la scelta giusta.
-            </h2>
-        </div>
-        <div class="image col-12 col-md-6">
-            <img src="/images/repair_phone.png" alt="riparazione smartphone">
-
-        </div>
-        <div class="action col-12 col-md-6">
+        <div class="action col-12 col-md-4" appEnter direction="bottom">
             <a routerLink="/contact" class="button w-100 btn-dark mt-5">Contattaci ora</a>
         </div>
     </div>
     <hr class="width-50">
-
-
-    <div class="section row justify-content-center width-100 enter">
-        <div class="message col-12 mb-5">
-            <h1>Ma c'è di più..</h1>
-            <h2>Da Smartlab puoi anche ritirare o inviare i tuoi pacchi, cambiare gestore telefonico e fornitore di
-                energia.</h2>
+    <div class="section row justify-content-center">
+        <app-skills></app-skills>
+    </div>
+    <hr class="width-50">
+    <div class="section row justify-content-center">
+        <div class="image col-12 col-lg-10" appEnter direction="bottom">
+            <img src="images/assistenza_tecnica.jpg" alt="riparazione smartphone">
         </div>
-        <app-carousel [slide]="true"></app-carousel>
-        <div class="action col-12 col-md-6">
-            <a class="button w-100 btn-dark mt-5" [href]="constants.maps" target="_blank">
-                Vieni a trovarci in negozio! <fa-icon [icon]="icons.faMapLocationDot"></fa-icon>
-            </a>
+        <div class="message col-12 col-lg-6" appEnter direction="top">
+            <h2>Un solo posto per ogni problema tecnologico.</h2>
+            <p>
+                Smartphone, tablet, PC... quando un dispositivo si blocca, ti blocchi anche tu. Siamo qui per
+                rimettere
+                in moto la tua tecnologia e semplificarti la vita. Offriamo assistenza tecnica e software completa per
+                tutti i tuoi dispositivi, indipendentemente dalla marca.
+            </p>
+
+            <h3>I nostri servizi:</h3>
+            <ul>
+                <li><strong class="text-highlight">Riparazioni rapide</strong>: Dallo schermo rotto alla batteria che
+                    non tiene più.</li>
+                <li><strong class="text-highlight">Supporto software</strong>: Rimozione virus, recupero dati e
+                    reinstallazione sistemi.</li>
+                <li><strong class="text-highlight">Configurazione e consulenza</strong>: Ti aiutiamo a usare al meglio i
+                    tuoi dispositivi.</li>
+            </ul>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="action col-12 col-lg-6" appEnter direction="left">
+                <a routerLink="/servizi" class="button w-100 btn-dark mt-5">Scopri i nostri servizi</a>
+            </div>
         </div>
     </div>
-
+    <hr class="width-50">
+    <!-- carousel reviews
+    -->
+    <div class="section row justify-content-center">
+        <app-reviews class="p-0" [auto]="true" [interval]="5000"></app-reviews>
+    </div>
     <hr class="width-50">
 
-    <div class="section row justify-content-center width-100 enter">
-        <div class="message col-12 mb-5">
-            <h1>Siamo a Tavullia, vicino Pesaro</h1>
+    <div class="text-big">
+        <h2>Ma c'è di più..</h2>
+    </div>
+    <!-- Carousel operatori
+     -->
+    <div class="section row justify-content-center">
+        <div class="message justify-start col-12 col-lg-6 mb-5" appEnter direction="right">
+            <h2 class="intro-text">Siamo anche un punto di riferimento per i servizi
+                di ogni giorno.</h2>
+
+            <div class="service-section">
+                <h3>Servizi Postali e Logistica</h3>
+                <ul>
+                    <li>
+                        <strong class="text-highlight">Ritiro e spedizione pacchi:</strong> Che tu stia aspettando un
+                        acquisto online o abbia
+                        bisogno di spedire o restituire un pacco, puoi fare tutto comodamente da noi.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="service-section">
+                <h3>Consulenza e Attivazione Forniture</h3>
+                <ul>
+                    <li>
+                        <strong class="text-highlight">Gestori telefonici</strong>: Stanco del tuo operatore? Ti
+                        aiutiamo a confrontare le
+                        migliori offerte e a cambiare gestore, sia per la linea fissa che per il cellulare.
+                    </li>
+                    <li>
+                        <strong class="text-highlight">Fornitori di energia</strong>: Ti guidiamo nella scelta del
+                        fornitore di luce e gas più
+                        conveniente per la tua casa o azienda, semplificando tutta la burocrazia del passaggio.
+                    </li>
+                </ul>
+            </div>
         </div>
-        <iframe
+        <div class="col-12 p-0" appEnter direction="bottom">
+            <app-carousel [slide]="true"></app-carousel>
+        </div>
+        <div class="row justify-content-center">
+            <div class="action col-lg-6" appEnter direction="top">
+                <a class="button w-100 btn-dark mt-5" [href]="constants.maps" target="_blank">
+                    Vieni a trovarci in negozio! <fa-icon [icon]="icons.faMapLocationDot"></fa-icon>
+                </a>
+            </div>
+        </div>
+    </div>
+    <hr class="width-50">
+    <div class="section row justify-content-center">
+        <div class="text-big col-12 mb-5 enter-top">
+            <h2>Siamo a <strong class="text-highlight">Tavullia</strong>, vicino <strong
+                    class="text-highlight">Pesaro</strong></h2>
+        </div>
+        <iframe class="enter-bottom" title="google-maps"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2874.9613987167563!2d12.753429899999999!3d43.898066199999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132ce3cee390e63f%3A0x97361222248caecc!2sSmartLab!5e0!3m2!1sit!2sit!4v1756663344862!5m2!1sit!2sit"
-            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            width="600" height="450" style="border:0;" allowfullscreen="true" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
-
-    <hr class="width-50">
-    <app-contactus></app-contactus>
 </div>
