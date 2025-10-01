@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Directive, ElementRef, inject, Inject } from '@angular/core';
+
+import { Directive, ElementRef, inject, Inject, DOCUMENT } from '@angular/core';
 import { PlatformService } from '../services/platform.service';
 
 @Directive({
